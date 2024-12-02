@@ -22,4 +22,7 @@ public class RegisterDto {
     @Email
     private String email;
 
+    @NotEmpty(message = "인증 코드를 입력해주세요")
+    private String code;
+
 }
