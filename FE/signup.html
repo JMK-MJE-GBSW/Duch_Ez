@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,24 +9,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
     <title>회원가입</title>
 </head>
 <body>
     <div class="signup-main">
         <div class="signup-frame">
             <p class="signup-text">회원가입</p>
-            <form>
+            <form id="signup-form">
                 <div class="signup-function">
-                        <input type="text" id="username" name="username" placeholder="사용자 이름" required>
-                        <input type="email" id="email" name="email" placeholder="이메일" required>
-                        <input type="password" id="password" name="password" placeholder="비밀번호" required>
-                        <input type="password" id="password-check" name="password-check" placeholder="비밀번호 확인" required>
-                        <input type="text" id="email-check" name="email-check" placeholder="이메일 인증번호 확인" required>
+                    <input type="text" id="username" name="username" placeholder="사용자 이름" required>
+                    <input type="email" id="email" name="email" placeholder="이메일" required>
+                    <input type="password" id="password" name="password" placeholder="비밀번호" required>
+                    <input type="password" id="password-check" name="password-check" placeholder="비밀번호 확인" required>
+                    <input type="text" id="email-check" name="email-check" placeholder="이메일 인증번호 확인" required>
                 </div>
-                <button type="submit" class="email-number" disabled>인증번호 발송</button>
+                <button type="button" class="email-number" id="send-code">인증번호 발송</button>
+                
             </form>
-            <button type="submit" class="signup-btn" disabled>회원가입 하기</button>
+            <button type="button" class="signup-btn" id="register-button">회원가입 하기</button>
         </div>
     </div>
 </body>

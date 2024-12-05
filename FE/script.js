@@ -1,43 +1,39 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const usernameInput = document.getElementById('username');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     const passwordCheckInput = document.getElementById('password-check');
     const emailCheckInput = document.getElementById('email-check');
-    const signupButton = document.querySelector('.signup-btn');
+    const signupButton = document.getElementById('register-button');
+    const sendCodeButton = document.getElementById('send-code');
 
-    const registerUser = async () => {
-        const registerDto = {
-            username: document.getElementById('username').value,
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value,
-            password_check: document.getElementById('password-check').value,
-            code: document.getElementById('code').value,
+    // 인증번호 발송 로직
+    const sendVerificationCode = async () => {
+        const data = {
+            username: usernameInput.value,
+            email: emailInput.value,
+            password: passwordInput.value,
+            password_check: passwordCheckInput.value,
         };
 
-        if (
-            !registerDto.username ||
-            !registerDto.email ||
-            !registerDto.password ||
-            !registerDto.password_check ||
-            !registerDto.code
-        ) {
-            alert('모든 필드를 입력해주세요.');
+        // 입력 필드 검증
+        if (!data.username || !data.email || !data.password || !data.password_check) {
+            alert('인증코드 제외 모든 필드를 입력해주세요.');
             return;
         }
 
-        if (registerDto.password !== registerDto.password_check) {
-            alert('패스워드가 일치하지 않습니다.');
+        if (data.password !== data.password_check) {
+            alert('비밀번호가 일치하지 않습니다.');
             return;
         }
 
         try {
-            const response = await fetch('/register', {
+            const response = await fetch('http://localhost:8080/user/send-code', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(registerDto),
+                body: JSON.stringify(data),
             });
 
             if (!response.ok) {
@@ -45,54 +41,70 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error(errorMessage);
             }
 
-            const successMessage = await response.text();
-            alert(successMessage);
+            alert('인증번호가 이메일로 발송되었습니다.');
         } catch (error) {
+            alert(`인증번호 발송 실패: ${error.message}`);
+        }
+    };
 
+    // 회원가입 로직
+    const registerUser = async () => {
+        const data = {
+            username: usernameInput.value,
+            email: emailInput.value,
+            password: passwordInput.value,
+            password_check: passwordCheckInput.value,
+            code: emailCheckInput.value,
+        };
+
+        // 입력값 검증
+        if (!data.username) {
+            alert('사용자 이름을 입력해주세요.');
+            return;
+        }
+        if (!data.email) {
+            alert('이메일을 입력해주세요.');
+            return;
+        }
+        if (!data.password) {
+            alert('비밀번호를 입력해주세요.');
+            return;
+        }
+        if (!data.password_check) {
+            alert('비밀번호 확인을 입력해주세요.');
+            return;
+        }
+        if (data.password !== data.password_check) {
+            alert('비밀번호가 일치하지 않습니다.');
+            return;
+        }
+        if (!data.code) {
+            alert('이메일 인증번호를 입력해주세요.');
+            return;
+        }
+
+
+        try {
+            const response = await fetch('http://localhost:8080/user/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(errorMessage);
+            }
+
+            alert('회원가입이 성공적으로 완료되었습니다.');
+        } catch (error) {
             alert(`회원가입 실패: ${error.message}`);
         }
     };
 
-    registerButton.addEventListener('click', registerUser);
+    // 이벤트 리스너
+    sendCodeButton.addEventListener('click', sendVerificationCode);
+    signupButton.addEventListener('click', registerUser);
 });
-
-//     const registerUser = async = () => {
-//         username: document.getElementById('username').value,
-//         email: document.getElementById('email').value,
-//         password: document.getElementById('password').value,
-//         password_check: document.getElementById('password-check').value,
-//         code: document.getElementById('code').value,
-//     };
-//     if (
-//         !registerDto.username || !registerDto.email || !registerDto.password || !registerDto.password_check || !registerDto.code) {
-//             alert('모든 필드를 입력해주세요');
-//             return;
-//         }
-    
-//     if (registerDto.password !== registerDto.password_check) {
-//         alert('패스워드가 일치하지 않습니다.');
-//         return;
-//     }
-//     try {
-//         const response = await fetch('/register' , {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type' : 'application/json',
-//             },
-//             body: JSON.stringify(registerDto),
-//         });
-
-//     if (!response.ok) {
-//         const errorMessage = await response.text();
-//         throw new Error(errorMessage);
-//     }
-
-//     const successMessage = await response.text();
-//     alert(successMessage);
-//     } catch (error) {
-//         alert(`회원가입 실패: ${error.message}`);
-//     }
-// };
-
-// registerButton.addEventListener('click', registerUser);
-// });
