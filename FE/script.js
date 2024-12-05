@@ -99,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             alert('회원가입이 성공적으로 완료되었습니다.');
+            window.location.href = 'login.html';
         } catch (error) {
             alert(`회원가입 실패: ${error.message}`);
         }
