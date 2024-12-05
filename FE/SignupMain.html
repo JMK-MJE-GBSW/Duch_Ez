@@ -17,15 +17,15 @@
     <div class="SignupMain-main">
         <div class="SignupMain-frame">
             <div class="SignupMain-nav">
-                <i id="SignupFa-bar" class="fa-solid fa-bars" onclick="toggleMenu('SignupMain-SideMenu')"></i>
-                <div class="overlay" id="overlay" onclick="toggleMenu('SignupMain-SideMenu')"></div>
+                <i id="SignupFa-bar" class="fa-solid fa-bars" onclick="openMenu('SignupMain-SideMenu', 'SignupOverlay')"></i>
+                <div class="overlay" id="SignupOverlay" onclick="closeMenu('SignupMain-SideMenu', 'SignupOverlay')"></div>
                 <div class="SignupMain-SideMenu" id="SignupMain-SideMenu">
                     <img class="SideMenu-img2" src="img/logo.svg" alt="SideMenu-img-2">
                         <div class="SideMenu-line"></div>
                     <div class="SideMenu-text">로그인 후 이용 해주세요.</div>
                 </div>
-                    <img class="SignNav-logo" src="img/logo.svg" />
-                    <button class="SignMain-navLogin" onclick="location.href='login.html'">
+                    <img class="SignupNav-logo" src="img/logo.svg" />
+                    <button class="SignupMain-navLogin" onclick="location.href='login.html'">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i>
                         <div class="navLogout-text">로그인/회원가입</div>
                     </button>
@@ -35,7 +35,7 @@
                 <div class="main-text">쉽고 간단한 더치페이</div>
                     <div class="main-text2">더치이지</div>
                 <div class="main-text3">여행갈 때, 회식에서 더치페이를 <br /> 쉽게 해보세요</div>
-                <div class="main-startBtn">
+                <div class="SignupMain-startBtn">
                     <img src="img/main-startBtn.svg" alt="main-startBtn">
                     <div class="main-start">시작하기</div>
                 </div>

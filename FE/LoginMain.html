@@ -17,11 +17,11 @@
     <div class="LoginMain-main">
         <div class="LoginMain-frame">
             <div class="LoginMain-nav">  
-                <i id=LoginFa-bar class="fa-solid fa-bars" onclick="toggleMenu('LoginMain-SideMenu')"></i>
-                <div class="overlay" id="overlay" onclick="toggleMenu('LoginMain-SideMenu')"></div>
+                <i id="LoginFa-bar" class="fa-solid fa-bars" onclick="openMenu('LoginMain-SideMenu', 'LoginOverlay')"></i>
+                <div class="overlay" id="LoginOverlay" onclick="closeMenu('LoginMain-SideMenu', 'LoginOverlay')"></div>
                 <div class="LoginMain-SideMenu" id="LoginMain-SideMenu">
                     <img class="SideMenu-img" src="img/logo.svg" alt="SideMenu-img">
-                            <div class="SideMenu-function">새로운 그룹 만들기</div>
+                            <div class="SideMenu-function">새로운 그룹 만들기</div> 
                         <div class="SideMenu-function2">그룹 전체 삭제</div>
                 </div>
                     <img class="LoginNav-logo" src="img/logo.svg" />
@@ -35,7 +35,7 @@
                 <div class="main-text">쉽고 간단한 더치페이</div>
                     <div class="main-text2">더치이지</div>
                 <div class="main-text3">여행갈 때, 회식에서 더치페이를 <br /> 쉽게 해보세요</div>
-                <div class="main-startBtn">
+                <div class="LoginMain-startBtn">
                     <img src="img/main-startBtn.svg" alt="main-startBtn">
                     <div class="main-start">시작하기</div>
                 </div>
