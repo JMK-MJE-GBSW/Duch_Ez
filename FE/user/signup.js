@@ -6,37 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const emailCheckInput = document.getElementById('email-check');
     const signupButton = document.getElementById('register-button');
     const sendCodeButton = document.getElementById('send-code');
-
-    // 로그인 로직
-    const login = async (username, password) => {
-        const loginData = {
-            username: username,
-            password: password
-        };
-
-        try {
-            const response = await fetch('https://localhost:8080/user/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(loginData),
-            });
-
-            if (!response.ok) {
-                const errorMessage = await response.text();
-                throw new Error(errorMessage);
-            }
-
-            const token = await response.text(); 
-            console.log("로그인 성공, 토큰:", token);
-
-            localStorage.setItem('authToken', token);
-        } catch (error) {
-            console.error("로그인 실패:", error.message);
-        }
-    };
-
     // 회원가입 로직
     const registerUser = async () => {
         const data = {
