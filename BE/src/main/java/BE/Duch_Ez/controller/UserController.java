@@ -1,28 +1,31 @@
 package BE.Duch_Ez.controller;
 
-import BE.Duch_Ez.dto.LoginDto;
-import BE.Duch_Ez.dto.RegisterDto;
+import BE.Duch_Ez.dto.user.LoginDto;
+import BE.Duch_Ez.dto.user.RegisterDto;
 import BE.Duch_Ez.entity.user.UserEntity;
-import BE.Duch_Ez.jwt.JwtTokenProvider;
-import BE.Duch_Ez.repository.UserRepository;
-import BE.Duch_Ez.service.UserService;
-import jakarta.validation.Valid;
+import BE.Duch_Ez.repository.user.UserRepository;
+import BE.Duch_Ez.service.user.UserService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/user")
+
 public class UserController {
 
     private final UserService userService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtTokenProvider jwtTokenProvider;
+
     // 회원가입 정보 제출
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterDto registerDto, BindingResult bindingResult) {
@@ -51,7 +54,7 @@ public class UserController {
     }
 
     // 이메일 인증 코드 전송
-    @PostMapping("/send-code")
+    @PostMapping("/send-code") //이거 좆같이 비효율적이네;;일단 ㄱㄷ
     public ResponseEntity<?> sendCode(@RequestBody RegisterDto registerDto) {
         try {
             userService.SendCode(
@@ -68,16 +71,27 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
-        UserEntity user = userRepository.findByUsername(loginDto.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
 
-        if (!passwordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
-            return ResponseEntity.badRequest().body("비밀번호가 올바르지 않습니다.");
+        try {
+            // 사용자 조회
+            UserEntity user = userRepository.findByUsername(loginDto.getUsername())
+                    .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+            // 비밀번호 검증
+            if (!passwordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
+                return ResponseEntity.badRequest().body("비밀번호가 올바르지 않습니다.");
+            }
+
+            // JWT 생성
+            String token = userService.generateToken(user.getUsername(), user.getId());
+
+            // 토큰 반환
+            return ResponseEntity.ok(Collections.singletonMap("token", token));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("로그인 오류" + e.getMessage());
         }
-
-        String token = jwtTokenProvider.generateToken(user.getUsername());
-        return ResponseEntity.ok("Bearer " + token);
     }
+
 
 
 }

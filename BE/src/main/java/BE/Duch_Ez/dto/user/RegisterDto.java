@@ -1,4 +1,4 @@
-package BE.Duch_Ez.dto;
+package BE.Duch_Ez.dto.user;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
