@@ -1,17 +1,15 @@
-package BE.Duch_Ez.service;
+package BE.Duch_Ez.service.user;
 
 
 import BE.Duch_Ez.entity.user.UserEntity;
-import BE.Duch_Ez.repository.UserRepository;
+import BE.Duch_Ez.jwt.JwtTokenProvider;
+import BE.Duch_Ez.repository.user.UserRepository;
 import jakarta.mail.internet.MimeMessage;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -118,6 +116,31 @@ public class UserService {
 
     }
 
+    ///token
+
+    private final JwtTokenProvider jwtTokenProvider;
+    public String generateToken(String username, Long userId) {
+        return jwtTokenProvider.createToken(username, userId); // ID와 username을 함께 전달
+    }
+
+
+    public boolean TokenCheck(String authorizationHeader) {
+        // Authorization 헤더가 비어있거나 Bearer로 시작하지 않으면 유효하지 않음
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+            return false;
+        }
+
+        // "Bearer " 접두사를 제거하여 실제 토큰 추출
+        String token = authorizationHeader.substring(7);
+
+        // JwtTokenProvider로 토큰 유효성 검사
+        return jwtTokenProvider.validateToken(token);
+    }
+
+    public Long extractUserIdFromToken(String authorizationHeader) {
+        String token = authorizationHeader.replace("Bearer ", "");
+        return jwtTokenProvider.getUserIdFromToken(token);
+    }
 
 
 }

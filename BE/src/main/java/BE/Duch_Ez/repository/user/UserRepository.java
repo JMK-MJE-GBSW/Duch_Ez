@@ -1,4 +1,4 @@
-package BE.Duch_Ez.repository;
+package BE.Duch_Ez.repository.user;
 
 import BE.Duch_Ez.entity.user.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
