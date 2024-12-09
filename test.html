@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>멤버 추가</title>
+  <style>
+    /* CSS 스타일 */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      color: white;
+      padding: 20px;
+    }
+
+    .GroupMake-box2 {   
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    #GroupMake-BoxText2 {
+      width: 300px;
+      height: 30px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .member-extra {
+      margin-left: 10px;
+      padding: 5px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+
+    .member-extra:hover {
+      background-color: #45a049;
+    }
+
+    .member-list {
+      margin-top: 20px;
+    }
+
+    .member-list div {
+      background-color: #f1f1f1;
+      color: #333;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="GroupMake-box2">
+    <input type="text" id="GroupMake-BoxText2" name="GroupMake-BoxText2" placeholder="참가자를 추가 해주세요" required>
+    <div class="member-extra" id="member-extra">추가</div>
+  </div>
+  <div class="member-list" id="member-list"></div>
+
+  <script>
+    // JavaScript 코드
+    document.getElementById('member-extra').addEventListener('click', function () {
+      const inputField = document.getElementById('GroupMake-BoxText2');
+      const inputValue = inputField.value.trim();
+
+      if (inputValue !== '') {
+        const memberList = document.getElementById('member-list');
+
+        // 새로운 멤버를 추가
+        const newItem = document.createElement('div');
+        newItem.textContent = inputValue;
+
+        // 리스트에 추가
+        memberList.appendChild(newItem);
+
+        // 입력 필드 초기화
+        inputField.value = '';
+      } else {
+        alert('참가자 이름을 입력해주세요.');
+      }
+    });
+  </script>
+</body>
+</html>

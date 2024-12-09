@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="GroupMake.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6ed6a67810.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="GroupMake.js"></script>
+    <title>그룹 생성 완료</title>
+</head>
+<body>
+    <div class="GroupMakeComplete-main">
+        <div class="GroupMakeComplete-frame">
+            <div class="GroupMakeComplete-nav">  
+                <i id="GroupMakeCompleteFa-bar" class="fa-solid fa-bars" onclick="openMenu('GroupMakeComplete-SideMenu', 'GroupMakeCompleteOverlay')"></i>
+                <div class="overlay" id="GroupMakeCompleteOverlay" onclick="closeMenu('GroupMakeComplete-SideMenu', 'GroupMakeCompleteOverlay')"></div>
+                <div class="GroupMakeComplete-SideMenu">
+                    <img class="SideMenu-img" src="img-GroupMake/logo.svg" alt="SideMenu-img">
+                            <div class="SideMenu-function">새로운 그룹 만들기</div> 
+                        <div class="SideMenu-function2">그룹 전체 삭제</div>
+                </div>
+                    <img class="GroupMakeCompleteNav-logo" src="img-GroupMake/logo.svg" />
+                    <button class="GroupMakeComplete-NavLogout" onclick="location.href='./SignupMain.html'">
+                        <i class="fa-solid fa-arrow-right-from-bracket" onclick="toggleMenu()"></i>
+                    <div class="navLogout-text">로그아웃</div>
+                </button>
+            </div>
+            <img class="Check" src="img-GroupMake/Check.svg" alt="check">
+                <div class="GroupMakeComplete-texts">
+                    <div class="GroupMakeComplete-text">스쿨캠핑</div>
+                    <div class="GroupMakeComplete-text2">그룹을 만들었습니다!</div>
+                    <div class="GroupMakeComplete-text3">그룹 페이지로 이동해 결제항목을 추가해보세요.</div>
+                </div>
+                <div class="GroupMakeComplete-btn">그룹 페이지 이동</div>
+        </div>
+    </div>
+</body>
+</html>

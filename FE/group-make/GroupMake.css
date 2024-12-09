@@ -1,0 +1,485 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    background-color: #062623;
+    overflow-x: hidden;
+}
+
+/* 그룹 생성 페이지 */
+
+.GroupMake-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.GroupMake-frame {
+    width: 640px;
+    height: 100%;
+    background-color: #040D09;
+}
+
+.GroupMake-nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #062623;
+    padding: 5px;
+}
+
+.GroupMake-SideMenu {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 400px;
+    height: 100%;
+    background-color: #222;
+    color: white;
+    overflow: auto;
+    transition: left 0.1s ease;
+    z-index: 1500;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.GroupMake-SideMenu.active {
+    left: 0;
+}
+
+.SideMenu-img {
+    width: 300px;
+}
+
+.SideMenu-function, .SideMenu-function2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 10px;
+    margin-top: 5%;
+}
+
+.SideMenu-function {
+    background-color: #19AD8B;
+}
+
+.SideMenu-function2 {
+    background-color: #731C1C;
+}
+
+#GroupMakeFa-bar {
+    width: 50px;
+    font-size: 40px;
+    margin-right: 3%;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    box-sizing: content-box;
+    transform: translate(-10%);
+}
+
+.GroupMakeNav-logo {
+    position: relative;
+    transform: translate(-30%);
+    width: 200px;
+}
+
+.GroupMake-NavLogout {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 15px;
+    background-color: transparent;
+    cursor: pointer;
+    gap: 10px;
+    margin-left: 35%;
+}
+
+.fa-arrow-right-from-bracket {
+    font-size: 35px;
+    color: #fff;
+}
+
+.navLogout-text {
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.GroupMake-texts {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    margin-left: 5%;
+    margin-top: 3%;
+}
+
+.GroupMake-text {
+    font-size: 35px;
+    line-height: 2;
+    color: #f0f0f0;
+}
+
+.GroupMake-text2 {
+    font-size: 15px;
+    color: #999;
+    line-height: 1.2;
+}
+
+.GroupMake-name {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100px;
+    margin-left: 8%;
+    margin-top: 8%;
+}
+
+.GroupMake-text3 {
+    font-size: 20px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    color: #f0f0f0;
+    line-height: 2;
+}
+
+.GroupMake-box {
+    display: flex;
+    align-items: center;
+    width: 450px;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 1%;
+    border: solid 0.5px #999;
+    background-color: transparent;
+}
+
+#GroupMake-BoxText {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: "Noto Sans KR", serif;
+    font-size: 15px;
+    font-weight: 600;   
+    color: #f0f0f0;
+    width: 500px;
+    padding: 10px 10px;
+}
+
+.GroupMake-member {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-left: 8%;
+    margin-top: 1%;
+  }
+  
+  .GroupMake-text4 {
+    font-size: 20px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    color: #f0f0f0;
+    line-height: 2;
+  }
+  
+  .GroupMake-box2 {
+    display: flex;
+    align-items: center;
+    width: 450px;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 1%;
+    border: solid 0.5px #999;
+    background-color: transparent;
+  }
+  
+  #GroupMake-BoxText2 {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: "Noto Sans KR", serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #f0f0f0;
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .member-extra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f0f0f0;
+    font-family: "Noto Sans KR", serif;
+    font-size: 15px;
+    font-weight: 700;
+    width: 100px;
+    height: 50px;
+    border-radius: 0 10px 10px 0;
+    background-color: #19AD8B;
+    cursor: pointer;
+    gap: 5px;
+  }
+  
+  #member-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+    margin-top: 3%;
+  }
+
+  .member-item {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: transparent;
+    border: 0.5px solid #999; /* 테두리 두께, 스타일, 색상 설정 */
+    color: #f0f0f0;
+}
+
+.GroupMake-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 520px;
+    height: 60px;
+    border-radius: 5px;
+    font-family: "Noto Sans KR", serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #f0f0f0;
+    background-color: #19AD8B;
+    cursor: pointer;
+    margin-top: 8%;
+    margin-left: 10%;
+}
+
+/* 그룹 생성 완료 페이지 */
+
+.GroupMakeComplete-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.GroupMakeComplete-frame {
+    width: 640px;
+    height: 100%;
+    background-color: #040D09;
+}
+
+.GroupMakeComplete-nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #062623;
+    padding: 5px;
+}
+
+.GroupMakeComplete-SideMenu {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 400px;
+    height: 100%;
+    background-color: #222;
+    color: white;
+    overflow: auto;
+    transition: left 0.1s ease;
+    z-index: 1500;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.GroupMakeComplete-SideMenu.active {
+    left: 0;
+}
+
+.SideMenu-img {
+    width: 300px;
+}
+
+.SideMenu-function, .SideMenu-function2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 10px;
+    margin-top: 5%;
+}
+
+.SideMenu-function {
+    background-color: #19AD8B;
+}
+
+.SideMenu-function2 {
+    background-color: #731C1C;
+}
+
+#GroupMakeCompleteFa-bar {
+    width: 50px;
+    font-size: 40px;
+    margin-right: 3%;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    box-sizing: content-box;
+    transform: translate(-10%);
+}
+
+.GroupMakeCompleteNav-logo {
+    position: relative;
+    transform: translate(-30%);
+    width: 200px;
+}
+
+.GroupMakeComplete-NavLogout {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 15px;
+    background-color: transparent;
+    cursor: pointer;
+    gap: 10px;
+    margin-left: 35%;
+}
+
+.fa-arrow-right-from-bracket {
+    font-size: 35px;
+    color: #fff;
+}
+
+.navLogout-text {
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.Check {
+    position: relative;
+    transform: translate(165%);
+    margin-top: 3%;
+}
+
+.GroupMakeComplete-texts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 700;
+    color: #f0f0f0;
+    flex-direction: column;
+}
+
+.GroupMakeComplete-text {
+    font-size: 30px;
+    line-height: 1;
+}
+
+.GroupMakeComplete-text2 {
+    font-size: 30px;
+}
+
+.GroupMakeComplete-text3 {
+    font-weight: 500;
+    font-size: 15px;
+    color: #999;
+}
+
+.GroupMakeComplete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 520px;
+    height: 60px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 5px;
+    color: #f0f0f0;
+    background-color: #19AD8B;
+    margin-top: 3%;
+    margin-left: 10%;
+    cursor: pointer;
+}

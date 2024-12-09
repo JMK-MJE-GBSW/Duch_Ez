@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="GroupMake.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6ed6a67810.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="GroupMake.js"></script>    
+    <title>그룹 만들기</title>
+</head>
+<body>
+    <div class="GroupMake-main">
+        <div class="GroupMake-frame">
+            <div class="GroupMake-nav">  
+                <i id="GroupMakeFa-bar" class="fa-solid fa-bars" onclick="openMenu('GroupMake-SideMenu', 'GroupMakeOverlay')"></i>
+                <div class="overlay" id="GroupMakeOverlay" onclick="closeMenu('GroupMake-SideMenu', 'GroupMakeOverlay')"></div>
+                <div class="GroupMake-SideMenu">
+                    <img class="SideMenu-img" src="img-GroupMake/logo.svg" alt="SideMenu-img">
+                            <div class="SideMenu-function">새로운 그룹 만들기</div> 
+                        <div class="SideMenu-function2">그룹 전체 삭제</div>
+                </div>
+                    <img class="GroupMakeNav-logo" src="img-GroupMake/logo.svg" />
+                    <button class="GroupMake-NavLogout" onclick="location.href='../home/SignupMain.html'">
+                        <i class="fa-solid fa-arrow-right-from-bracket" onclick="toggleMenu()"></i>
+                    <div class="navLogout-text">로그아웃</div>
+                </button>
+            </div>
+            <div class="GroupMake-texts">
+                <div class="GroupMake-text">그룹 만들기</div>
+                <div class="GroupMake-text2">그룹 이름과 참가자 인원을 추가 해주세요. <br />
+                    그룹은 언제든지 수정 가능합니다.</div>
+            </div>
+            <div class="GroupMake-name">
+                <div class="GroupMake-text3">그룹 이름</div>
+                    <div class="GroupMake-box">
+                        <input type="text" id="GroupMake-BoxText" name="GroupMake-BoxText" placeholder="그룹의 이름을 입력해주세요" required>
+                    </div>
+                </div>
+                <div class="GroupMake-member">
+                    <div class="GroupMake-text4">참가자 추가</div>
+                        <div class="GroupMake-box2">
+                            <input type="text" id="GroupMake-BoxText2" name="GroupMake-BoxText2" placeholder="참가자를 추가 해주세요" required>
+                            <div class="member-extra" id="member-extra">
+                                <i class="fa-solid fa-plus"></i>
+                                추가</div>
+                        </div>
+                        <div id="member-list">
+                        </div>
+                    </div>
+                    <div class="GroupMake-btn">그룹 만들기</div>
+            </div>
+        </div>
+</body>
+</html>
