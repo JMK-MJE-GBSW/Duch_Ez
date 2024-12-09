@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const emailCheckInput = document.getElementById('email-check');
     const signupButton = document.getElementById('register-button');
     const sendCodeButton = document.getElementById('send-code');
-
-
     // 회원가입 로직
     const registerUser = async () => {
         const data = {
@@ -114,22 +112,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
     signupButton.addEventListener('click', registerUser);
 }); 
-
-// 사이드 메뉴 열기
-function openMenu(menuId, overlayId) {
-    const sideMenu = document.getElementById(menuId);
-    const overlay = document.getElementById(overlayId);
-
-    // 메뉴와 오버레이 활성화
-    sideMenu.classList.add('active');
-    overlay.classList.add('active');
-}
-
-function closeMenu(menuId, overlayId) {
-    const sideMenu = document.getElementById(menuId);
-    const overlay = document.getElementById(overlayId);
-
-    // 메뉴와 오버레이 비활성화
-    sideMenu.classList.remove('active');
-    overlay.classList.remove('active');
-}

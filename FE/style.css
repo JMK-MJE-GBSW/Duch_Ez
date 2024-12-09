@@ -1,0 +1,425 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+  background-color: #062623;
+  overflow-x: hidden;
+}
+
+/*로그인 되있는 메인 페이지 + 중복처리 */
+.LoginMain-main, .SignupMain-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 190vh;
+}
+
+.LoginMain-frame {
+  width: 640px;
+  height: 100%;
+  background-color: #040D09;
+}
+
+.LoginMain-nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid #062623;
+  padding: 5px;
+}
+
+  .LoginMain-SideMenu {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 400px;
+    height: 100%;
+    background-color: #222;
+    color: white;
+    overflow: auto;
+    transition: left 0.1s ease;
+    z-index: 1500;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s ease;
+    z-index: 1000;
+  }
+
+  .overlay.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .LoginMain-SideMenu.active {
+    left: 0;
+  }
+
+.SideMenu-img {
+  width: 300px;
+}
+
+.SideMenu-function, .SideMenu-function2 {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  width: 300px;
+  height: 50px;
+  font-family: "Noto Sans KR", serif;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 10px;
+  margin-top: 5% ;
+}
+.SideMenu-function {
+    background-color: #19AD8B;
+}
+
+.SideMenu-function2 {
+  background-color: #731C1C;
+}
+
+#LoginFa-bar {
+  width: 50px;
+  font-size: 40px;
+  margin-right: 3%;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px; 
+  box-sizing: content-box;
+  transform: translate(-10%);
+}
+
+.LoginNav-logo {
+  position: relative;
+  transform: translate(-30%); 
+  width: 200px;
+}
+
+.LoginMain-navLogout {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-family: "Noto Sans KR", serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 15px;
+  background-color: transparent;
+  cursor: pointer;
+  gap: 10px;
+  margin-left: 35%;
+}
+
+.fa-arrow-right-from-bracket {
+  font-size: 35px;
+  color: #fff;
+}
+
+.navLogout-text {
+  font-family: "Noto Sans KR", serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.main-texts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  font-family: "Noto Sans KR", serif;
+  font-weight: 600;
+  color: #fff;
+  transform: translateY(-20%);
+  line-height: 1.2;
+  margin-top: 3%;
+}
+
+.main-text {
+  font-size: 30px;
+}
+
+.main-text2 {
+  font-size: 55px;
+}
+
+.main-text3 {
+  font-size: 12px;
+  margin-top: 2%;
+}
+
+.LoginMain-startBtn, .SignupMain-startBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #19ad8b;
+  margin-top: 2%;
+}
+
+.LoginMain-startBtn:hover {
+  background-color: #12846d;
+}
+
+.fa-chevron-down {
+  margin-top: 5%;
+  font-size: 30px;
+}
+
+.main-texts2 {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  font-family: "Noto Sans KR", serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.main-explain {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10%;
+  gap: 40px;
+}
+
+.main-shopping {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 400px;
+  height: 120px;
+  border-radius: 15px;
+  font-family: "Noto Sans KR", serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #222;
+}
+
+.main-img3 {
+  margin-left: 5%;
+}
+
+.main-shoppingTexts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-left: 10%;
+  margin-bottom: 2%;
+}
+
+.main-shoppingText {
+  font-size: 30px;
+}
+
+.main-shoppingText2 {
+  font-size: 15px;
+  color: #999;
+}
+
+.main-gift {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 400px;
+  height: 120px;
+  border-radius: 15px;
+  font-family: "Noto Sans KR", serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #222;
+}
+
+.main-img4 {
+  margin-left: 5%;
+}
+
+.main-giftTexts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-left: 5%;
+  margin-bottom: 2%;
+}
+
+.main-giftText {
+  font-size: 30px;
+}
+
+.main-giftText2 {
+  font-size: 15px;
+  color: #999;
+}
+
+.main-money {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 400px;
+  height: 120px;
+  border-radius: 15px;
+  font-family: "Noto Sans KR", serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #222;
+}
+
+.main-img5 {
+  margin-left: 5%;
+}
+
+.main-moneyTexts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-left: 10%;
+  margin-bottom: 2%;
+}
+
+.main-moneyText {
+  font-size: 30px;
+}
+
+.main-moneyText2 {
+  font-size: 15px;
+  color: #999;
+}
+/* 로그아웃된 메인 페이지 */
+.SignupMain-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.SignupMain-frame {
+  width: 640px;
+  height: 100%;
+  background-color: #040D09;
+}
+
+.SignupMain-nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid #062623;
+  padding: 5px;
+}
+
+.SignupMain-SideMenu {
+  position: fixed;
+  top: 0;
+  left: -400px;
+  width: 400px;
+  height: 100%;
+  background-color: #222;
+  color: white;
+  overflow: auto;
+  transition: left 0.1s ease;
+  z-index: 1500;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.SideMenu-img2 {
+  width: 300px;
+}
+
+.SideMenu-text {
+  font-family: "Noto Sans KR", serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #999;
+  margin-top: 15%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.SignupMain-SideMenu.active {
+  left: 0;
+}
+
+#SignupFa-bar {
+  width: 50px;
+  font-size: 40px;
+  margin-right: 3%;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px; 
+  box-sizing: content-box;
+  transform: translate(-10%);
+}
+
+.SignupNav-logo {
+  position: relative;
+  transform: translate(-30%);
+  width: 200px;
+}
+
+.SignupMain-navLogin {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-color: transparent;
+  font-family: "Noto Sans KR", serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 15px;
+  cursor: pointer;
+  gap: 10px;
+  margin-left: 26%;
+}
+
+.fa-arrow-right-to-bracket {
+  font-size: 35px;
+  color: #fff;
+}
+
+.SignupMain-startBtn:hover {
+  background-color: #12846d;
+}

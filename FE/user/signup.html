@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="user/user.css">
+    <script src="https://kit.fontawesome.com/6ed6a67810.js" crossorigin="anonymous"></script>
+    <script defer src="user/signup.js"></script>
+    <title>회원가입</title>
+</head>
+<body>  
+    <div class="signup-main">
+        <div class="signup-frame">
+            <i id="Signup-xmark" class="fa-solid fa-xmark"></i>
+                <p class="signup-text">회원가입</p>
+            <form>
+                <div class="signup-function">
+                    <input type="text" id="username" name="username" placeholder="사용자 이름" required>
+                    <input type="email" id="email" name="email" placeholder="이메일" required>
+                    <input type="password" id="password" name="password" placeholder="비밀번호" required>
+                    <input type="password" id="password-check" name="password-check" placeholder="비밀번호 확인" required>
+                    <input type="text" id="email-check" name="email-check" placeholder="이메일 인증번호 확인" required>
+                </div>
+                <button type="button" class="email-number" id="send-code">인증번호 발송</button>
+            </form>
+            <button type="button" class="signup-btn" id="register-button">회원가입 하기</button>
+        </div>
+    </div>
+</body>
+</html>

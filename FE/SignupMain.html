@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그아웃 된 메인페이지</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6ed6a67810.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="SignupMain-main">
+        <div class="SignupMain-frame">
+            <div class="SignupMain-nav">
+                <i id="SignupFa-bar" class="fa-solid fa-bars" onclick="openMenu('SignupMain-SideMenu', 'SignupOverlay')"></i>
+                <div class="overlay" id="SignupOverlay" onclick="closeMenu('SignupMain-SideMenu', 'SignupOverlay')"></div>
+                <div class="SignupMain-SideMenu" id="SignupMain-SideMenu">
+                    <img class="SideMenu-img2" src="img/logo.svg" alt="SideMenu-img-2">
+                        <div class="SideMenu-line"></div>
+                    <div class="SideMenu-text">로그인 후 이용 해주세요.</div>
+                </div>
+                    <img class="SignupNav-logo" src="img/logo.svg" />
+                    <button class="SignupMain-navLogin" onclick="location.href='login.html'">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <div class="navLogout-text">로그인/회원가입</div>
+                    </button>
+            </div>
+            <img class="main-img" src="img/main-img.svg" alt="main-img" />
+            <div class="main-texts">
+                <div class="main-text">쉽고 간단한 더치페이</div>
+                    <div class="main-text2">더치이지</div>
+                <div class="main-text3">여행갈 때, 회식에서 더치페이를 <br /> 쉽게 해보세요</div>
+                <div class="SignupMain-startBtn">
+                    <img src="img/main-startBtn.svg" alt="main-startBtn">
+                    <div class="main-start">시작하기</div>
+                </div>
+                </div>
+            <div class="main-texts2">
+                <img src="img/main-img2.svg" alt="main-img2">
+                <div class="main-text4">어떤 경우에 사용 되나요?</div>
+            </div>
+        <div class="main-explain">
+                <div class="main-shopping">
+                    <img class=main-img3 src="img/main-img3.svg" alt="main-img3">
+                    <div class="main-shoppingTexts">
+                    <div class="main-shoppingText">쇼핑</div>
+                <div class="main-shoppingText2">쇼핑친구들과 쇼핑할때 공동구매, <br /> 
+                    애인들과의 커플템을 구매할 <br />
+                    경우가 있으신가요?</div>
+                </div>
+            </div>
+            <div class="main-gift">
+                <img class=main-img4 src="img/main-img4.svg" alt="main-img4">
+                    <div class="main-giftTexts">
+                    <div class="main-giftText">선물</div>
+                <div class="main-giftText2">친구나 가족의 선물을 단체로 준비하는 <br /> 경우가 있으신가요?</div>
+            </div>
+        </div>
+        <div class="main-money">
+            <img class=main-img5 src="img/main-img5.svg" alt="main-img5">
+                <div class="main-moneyTexts">
+                <div class="main-moneyText">자금 모으기 </div>
+            <div class="main-moneyText2">친구,가족과 자금을 모아 <br />
+                관리를 해본 경우가 있으신가요?</div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
