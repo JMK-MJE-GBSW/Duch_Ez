@@ -124,18 +124,6 @@ public class UserService {
     }
 
 
-    public boolean TokenCheck(String authorizationHeader) {
-        // Authorization 헤더가 비어있거나 Bearer로 시작하지 않으면 유효하지 않음
-        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-            return false;
-        }
-
-        // "Bearer " 접두사를 제거하여 실제 토큰 추출
-        String token = authorizationHeader.substring(7);
-
-        // JwtTokenProvider로 토큰 유효성 검사
-        return jwtTokenProvider.validateToken(token);
-    }
 
     public Long extractUserIdFromToken(String authorizationHeader) {
         String token = authorizationHeader.replace("Bearer ", "");
