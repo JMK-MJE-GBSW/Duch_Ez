@@ -74,10 +74,6 @@ html {
     left: 0;
 }
 
-.SideMenu-img {
-    width: 300px;
-}
-
 .SideMenu-function, .SideMenu-function2 {
     display: flex;
     justify-content: center;
@@ -284,7 +280,7 @@ html {
     justify-content: center;
     flex-direction: row;
     background-color: transparent;
-    border: 0.5px solid #999; /* 테두리 두께, 스타일, 색상 설정 */
+    border: 0.5px solid #999; 
     color: #f0f0f0;
 }
 
@@ -307,20 +303,20 @@ html {
 
 /* 그룹 생성 완료 페이지 */
 
-.GroupMakeComplete-main {
+.GroupComplete-main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
 }
 
-.GroupMakeComplete-frame {
+.GroupComplete-frame {
     width: 640px;
     height: 100%;
     background-color: #040D09;
 }
 
-.GroupMakeComplete-nav {
+.GroupComplete-nav {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -329,7 +325,7 @@ html {
     padding: 5px;
 }
 
-.GroupMakeComplete-SideMenu {
+.GroupComplete-SideMenu {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -346,6 +342,10 @@ html {
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 }
 
+.GroupComplete-SideMenu.active {
+    left: 0;
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -355,7 +355,7 @@ html {
     background: rgba(0, 0, 0, 0.5);
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0.3s, opacity 0.3s ease;
+    transition: opacity 0.3s ease;
     z-index: 1000;
 }
 
@@ -364,13 +364,6 @@ html {
     opacity: 1;
 }
 
-.GroupMakeComplete-SideMenu.active {
-    left: 0;
-}
-
-.SideMenu-img {
-    width: 300px;
-}
 
 .SideMenu-function, .SideMenu-function2 {
     display: flex;
@@ -382,7 +375,7 @@ html {
     font-weight: 600;
     font-size: 15px;
     border-radius: 10px;
-    margin-top: 5%;
+    margin-top: 5%;  
 }
 
 .SideMenu-function {
@@ -393,7 +386,7 @@ html {
     background-color: #731C1C;
 }
 
-#GroupMakeCompleteFa-bar {
+#GroupCompleteFa-bar {
     width: 50px;
     font-size: 40px;
     margin-right: 3%;
@@ -404,13 +397,13 @@ html {
     transform: translate(-10%);
 }
 
-.GroupMakeCompleteNav-logo {
+.GroupCompleteNav-logo {
     position: relative;
     transform: translate(-30%);
     width: 200px;
 }
 
-.GroupMakeComplete-NavLogout {
+.GroupComplete-NavLogout {
     display: flex;
     align-items: center;
     text-align: center;
@@ -442,7 +435,7 @@ html {
     margin-top: 3%;
 }
 
-.GroupMakeComplete-texts {
+.GroupComplete-texts {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -452,22 +445,22 @@ html {
     flex-direction: column;
 }
 
-.GroupMakeComplete-text {
+.GroupComplete-text {
     font-size: 30px;
     line-height: 1;
 }
 
-.GroupMakeComplete-text2 {
+.GroupComplete-text2 {
     font-size: 30px;
 }
 
-.GroupMakeComplete-text3 {
+.GroupComplete-text3 {
     font-weight: 500;
     font-size: 15px;
     color: #999;
 }
 
-.GroupMakeComplete-btn {
+.GroupComplete-btn {
     display: flex;
     align-items: center;
     justify-content: center;
