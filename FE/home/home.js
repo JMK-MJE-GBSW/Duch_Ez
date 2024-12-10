@@ -1,11 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const usernameInput = document.getElementById('username');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const passwordCheckInput = document.getElementById('password-check');
-    const emailCheckInput = document.getElementById('email-check');
-    const signupButton = document.getElementById('register-button');
-    const sendCodeButton = document.getElementById('send-code');
 
     // 이벤트 리스너
     sendCodeButton.addEventListener('click', function () {
