@@ -48,6 +48,7 @@ html {
     transition: left 0.1s ease;
     z-index: 1500;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    overflow-x: hidden;
 }
 
 .overlay {
