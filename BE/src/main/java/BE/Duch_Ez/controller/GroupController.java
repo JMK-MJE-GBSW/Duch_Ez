@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/group")
@@ -23,16 +25,9 @@ public class GroupController {
     private final GroupService groupService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> CreateGroup(
-            @RequestHeader("Authorization") String authorizationHeader, // JWT 토큰 전달
-            @Valid @RequestBody GroupDto groupsDto, // 요청 Body
-            BindingResult bindingResult
-    ) {
+    public ResponseEntity<?> CreateGroup(@RequestHeader("Authorization") String authorizationHeader, @Valid @RequestBody GroupDto groupsDto, BindingResult bindingResult) {
         try {
-            // 토큰 체크 로직
-            if (!userService.TokenCheck(authorizationHeader)) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰이 유효하지 않습니다.");
-            }
+
 
             // 유효성 검사
             if (bindingResult.hasErrors()) {
@@ -46,6 +41,9 @@ public class GroupController {
             // 그룹 생성 로직
             groupService.CreateGroup(groupsDto);
             return ResponseEntity.ok("그룹 생성 완료");
+
+        } catch (SQLIntegrityConstraintViolationException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("그룹 생성 오류: " + e.getMessage());
