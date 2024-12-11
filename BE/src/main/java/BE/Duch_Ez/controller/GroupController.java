@@ -56,7 +56,7 @@ public class GroupController {
 
     @GetMapping("/{id}")
     public GroupDto getGroup(@PathVariable Long id){
-        return groupService.getGroup(id);
+        return groupService.getGroup(id); //조회한 그룹 아이디가 존재하지 않을 때 처리
 
     }
 
@@ -73,8 +73,17 @@ public class GroupController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
+    }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteGroup(@PathVariable Long id){
+        try {
+            groupService.deleteGroup(id);
 
+            return ResponseEntity.ok("그룹 삭제 완료");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
 

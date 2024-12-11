@@ -123,4 +123,12 @@ public class GroupService {
 
         groupRepository.save(group);
     }
+
+    public void deleteGroup(Long groupId) {
+        GroupEntity group = groupRepository.findById(groupId)
+                .orElseThrow(() -> new IllegalArgumentException("그룹이 존재하지 않습니다."));
+
+        groupRepository.delete(group);
+
+    }
 }
