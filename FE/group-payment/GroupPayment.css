@@ -1,0 +1,363 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    background-color: #062623;
+    overflow-x: hidden;
+}
+
+.GroupPayment-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 125vh;
+}
+
+.GroupPayment-frame {
+    width: 640px;
+    height: 100%;
+    background-color: #040D09;
+}
+
+.GroupPayment-nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #062623;
+    padding: 5px;
+}
+
+.GroupPayment-SideMenu {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 400px;
+    height: 100%;
+    background-color: #222;
+    color: white;
+    overflow: auto;
+    transition: left 0.1s ease;
+    z-index: 1500;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    overflow-x: hidden;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.GroupPayment-SideMenu.active {
+    left: 0;
+}
+
+.SideMenu-function, .SideMenu-function2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 10px;
+    margin-top: 5%;  
+}
+
+.SideMenu-function {
+    background-color: #19AD8B;
+}
+
+.SideMenu-function2 {
+    background-color: #731C1C;
+}
+
+#GroupPayment-Fa-bar {
+    width: 50px;
+    font-size: 40px;
+    margin-right: 3%;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    box-sizing: content-box;
+    transform: translate(-10%);
+}
+
+.GroupPayment-Nav-logo {
+    position: relative;
+    transform: translate(-30%);
+    width: 200px;
+}
+
+.GroupPayment-NavLogout {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 15px;
+    background-color: transparent;
+    cursor: pointer;
+    gap: 10px;
+    margin-left: 35%;
+}
+
+.fa-arrow-right-from-bracket {
+    font-size: 35px;
+    color: #fff;
+}
+
+.navLogout-text {
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.GroupPayment-texts {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    margin-left: 5%;
+    margin-top: 3%;
+}
+
+.GroupPayment-text {
+    font-size: 35px;
+    line-height: 1.5;
+    color: #f0f0f0;
+}
+
+.GroupPayment-text2 {
+    font-size: 15px;
+    color: #999;
+}
+
+.GroupPayment-function {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.GroupPayment-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100px;
+    margin-left: 8%;
+    margin-top: 10%;
+}
+
+.GroupPayment-text3 {
+    font-size: 15px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    color: #f0f0f0;
+    line-height: 2;
+}
+
+.GroupPayment-box {
+    display: flex; /*공통 스타일 */
+    align-items: center;
+    width: 450px;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 1%;
+    border: solid 0.5px #999;
+    background-color: transparent;
+}
+
+#GroupPayment-BoxText { /*공통 스타일 */
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: "Noto Sans KR", serif;
+    font-size: 15px;
+    font-weight: 700;   
+    color: #f0f0f0;
+    width: 500px;
+    padding: 10px 10px;
+}
+
+.GroupPayment-total {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100px;
+    margin-left: 8%;
+}
+
+.GroupPayment-text4 {
+    font-size: 15px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    color: #f0f0f0;
+    line-height: 2;
+}
+
+.GroupPayment-payer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100px;
+    margin-left: 8%;
+}
+
+.GroupPayment-text5 {
+    font-size: 15px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    color: #f0f0f0;
+    line-height: 2;
+}
+
+.GroupPayment-spend {
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #f0f0f0;
+    margin-left: 8%;
+}
+
+.GroupPayment-member {
+    width: 100px;
+    height: 35px;
+    background-color: #999;
+    border-radius: 10px;
+    margin-top: 1%;
+}
+
+.GroupPayment-TextBox img {
+    max-width: 24px;
+    height: auto;
+}
+
+.GroupPayment-TextBox {
+    display: flex;
+    align-items: center;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 12px;
+    width: 500px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: #222;
+    color: #f0f0f0;
+    margin-left: 5%;
+}
+
+.GroupPayment-texts2 {
+    display: flex;
+    align-items: center;
+    margin-left: 3%;
+    gap: 5px;
+}
+
+#GroupPayment-BoxDate { 
+    border: none; 
+    outline: none; 
+    background-color: transparent; 
+    font-family: "Noto Sans KR", serif; 
+    font-size: 15px; 
+    font-weight: 700;    
+    color: #f0f0f0; 
+    width: 120px; 
+    padding: 10px; 
+    pointer-events: none;  
+    cursor: pointer; 
+} 
+ 
+.GroupPayment-DateBox { 
+    display: flex;  
+    align-items: center;  
+    border: 0.5px solid #999; 
+    width: 450px; 
+    border-radius: 10px; 
+    margin-left: 8%; 
+    padding: 5px; 
+    cursor: pointer; 
+} 
+
+.GroupPayment-DateBox img { 
+    max-width: 20px; 
+    height: auto; 
+    margin-left: 2%; 
+    cursor: pointer;
+}
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+        appearance: none; 
+        -webkit-appearance: none; 
+        -moz-appearance: none; 
+        border: 1px solid #ccc; 
+        padding: 10px;
+        border-radius: 5px; 
+        background-color: #f9f9f9; 
+        font-size: 16px;
+    }
+
+.GroupPayment-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 60px;
+    border-radius: 5px;
+    font-family: "Noto Sans KR", serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #f0f0f0;
+    background-color: #19AD8B;
+    cursor: pointer;
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
+.GroupPayment-btn2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 60px;
+    border-radius: 5px;
+    font-family: "Noto Sans KR", serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #f0f0f0;
+    border: 1px solid #999;
+    cursor: pointer;
+    margin-top: 1%;
+    margin-left: 10%;   
+}
