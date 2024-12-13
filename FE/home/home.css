@@ -99,6 +99,10 @@ html {
     background-color: #19AD8B;
 }
 
+.SideMenu-function:hover {
+  background-color: #12846d;
+}
+
 .LoginSideMenu-text {
     font-family: "Noto Sans KR", serif;
     font-weight: 600;
