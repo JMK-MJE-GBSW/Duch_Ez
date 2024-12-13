@@ -3,17 +3,22 @@ package BE.Duch_Ez.service.group;
 import BE.Duch_Ez.dto.group.GroupCreateRequest;
 import BE.Duch_Ez.dto.group.GroupDto;
 import BE.Duch_Ez.dto.group.ParticipantDto;
+import BE.Duch_Ez.entity.group.DuchPayEntity;
+import BE.Duch_Ez.entity.group.DuchPayParticipantEntity;
 import BE.Duch_Ez.entity.group.GroupEntity;
 import BE.Duch_Ez.entity.group.ParticipantEntity;
 import BE.Duch_Ez.entity.user.UserEntity;
 import BE.Duch_Ez.repository.group.GroupRepository;
+import BE.Duch_Ez.repository.group.ParticipantRepository;
 import BE.Duch_Ez.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +27,7 @@ public class GroupService {
 
     private final GroupRepository groupRepository;
     private final UserRepository userRepository;
+    private final ParticipantRepository participantRepository;
 
     // 그룹 생성
     public void createGroup(GroupCreateRequest request) throws SQLIntegrityConstraintViolationException {
@@ -58,6 +64,7 @@ public class GroupService {
                     GroupDto groupDto = new GroupDto();
                     groupDto.setName(group.getName());
                     groupDto.setOwnerId(group.getOwner().getId());
+                    groupDto.setName(group.getName());
                     groupDto.setId(group.getId());
                     // 참가자 리스트를 DTO로 변환
                     List<ParticipantDto> participantDtos = group.getParticipants().stream()
@@ -66,6 +73,7 @@ public class GroupService {
                                 dto.setId(participant.getId());
                                 dto.setName(participant.getName());
                                 dto.setGroupId(group.getId());
+                                dto.setGroupName(group.getName());
                                 return dto;
                             })
                             .collect(Collectors.toList());
@@ -76,39 +84,32 @@ public class GroupService {
                 .collect(Collectors.toList());
     }
 
-    public GroupDto getGroup(Long groupId) {
+    public GroupDto getGroup(String GroupName) {
+        GroupEntity group = groupRepository.findByName(GroupName)
+                .orElseThrow(() -> new IllegalArgumentException("그룹이 존재하지 않습니다."));
 
-        try {
-            GroupEntity group = groupRepository.findById(groupId)
-                    .orElseThrow(() -> new IllegalArgumentException("그룹이 존재하지 않습니다."));
+        GroupDto groupDto = new GroupDto();
+        groupDto.setName(group.getName());
+        groupDto.setId(group.getId());
 
-            GroupDto groupDto = new GroupDto();
-            groupDto.setName(group.getName());
-            groupDto.setId(group.getId());
+        List<ParticipantDto> participantDtos = group.getParticipants().stream()
+                .map(participant -> {
+                    ParticipantDto participantDto = new ParticipantDto();
+                    participantDto.setId(participant.getId());
+                    participantDto.setName(participant.getName());
+                    participantDto.setGroupId(participant.getId());
+                    participantDto.setGroupName(group.getName()); // 그룹 ID 설정
 
-            List<ParticipantDto> participantDtos = group.getParticipants().stream()
-                    .map(participant -> {
-                        ParticipantDto participantDto = new ParticipantDto();
-                        participantDto.setId(participant.getId());
-                        participantDto.setName(participant.getName());
-                        participantDto.setGroupId(group.getId()); // 그룹 ID 설정
-                        return participantDto;
-                    })
-                    .collect(Collectors.toList());
+                    return participantDto;
+                })
+                .collect(Collectors.toList());
 
-            groupDto.setParticipants(participantDtos);
-
-            return groupDto;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("그룹 정보를 가져오는 중 오류가 발생했습니다.");
-
-        }
+        groupDto.setParticipants(participantDtos);
+        return groupDto;
     }
 
-    public void updateGroup(GroupCreateRequest request, Long groupId) throws SQLIntegrityConstraintViolationException {
-
-        GroupEntity group = groupRepository.findById(groupId)
+    public void updateGroup(GroupCreateRequest request, String groupName) throws SQLIntegrityConstraintViolationException {
+        GroupEntity group = groupRepository.findByName(groupName)
                 .orElseThrow(() -> new IllegalArgumentException("그룹이 존재하지 않습니다."));
 
         if (groupRepository.existsByname(request.getName())) {
@@ -116,19 +117,22 @@ public class GroupService {
         }
 
         if (group.getName().equals(request.getName())) {
-            throw new SQLIntegrityConstraintViolationException("기존 그룹 이름과 동일합니다");
+            throw new SQLIntegrityConstraintViolationException("기존 그룹 이름과 동일합니다.");
         }
 
         group.setName(request.getName());
-
         groupRepository.save(group);
     }
 
-    public void deleteGroup(Long groupId) {
-        GroupEntity group = groupRepository.findById(groupId)
+    public void deleteGroup(String groupName) {
+        GroupEntity group = groupRepository.findByName(groupName)
                 .orElseThrow(() -> new IllegalArgumentException("그룹이 존재하지 않습니다."));
-
         groupRepository.delete(group);
-
     }
+
+
+
+    ///
+
+
 }
