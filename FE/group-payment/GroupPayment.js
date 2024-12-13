@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // 오늘 날짜를 자동으로 설정하는 함수
     function setTodayDate(inputId) {
         const dateInput = document.getElementById(inputId);
         if (dateInput) {
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 메뉴 열기 함수
     function openMenu(menuId, overlayId) {
         const sideMenu = document.getElementById(menuId);
         const overlay = document.getElementById(overlayId);
@@ -26,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 메뉴 닫기 함수
     function closeMenu(menuId, overlayId) {
         const sideMenu = document.getElementById(menuId);
         const overlay = document.getElementById(overlayId);
@@ -39,11 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 전역 함수로 노출
     window.openMenu = openMenu;
     window.closeMenu = closeMenu;
 
-    // 햄버거 메뉴 아이콘 및 오버레이 설정
     const hamburgerIcon = document.getElementById('GroupCompleteFa-bar');
     const overlay = document.getElementById('GroupCompleteOverlay');
 
@@ -57,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 날짜 입력창과 아이콘 동작 설정
     const dateBox = document.querySelector('.GroupPayment-DateBox');
     const dateInput = document.getElementById('GroupPayment-BoxDate');
     const calendarIcon = document.getElementById('calendar-icon');
@@ -73,6 +67,5 @@ document.addEventListener('DOMContentLoaded', function () {
         calendarIcon.addEventListener('click', showDatePicker);
     }
 
-    // 날짜 입력창에 오늘 날짜 자동 설정
     setTodayDate('GroupPayment-BoxDate');
 });
