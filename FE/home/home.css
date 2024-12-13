@@ -37,7 +37,7 @@ html {
 
   .LoginMain-SideMenu {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     position: fixed;
     top: 0;
@@ -76,9 +76,10 @@ html {
 
 .SideMenu-img {
   width: 300px;
+  margin-left: 12%;
 }
 
-.SideMenu-function, .SideMenu-function2 {
+.SideMenu-function {
   display: flex; 
   justify-content: center; 
   align-items: center; 
@@ -88,14 +89,22 @@ html {
   font-weight: 600;
   font-size: 15px;
   border-radius: 10px;
-  margin-top: 5% ;
+  margin-top: 5%;
+  margin-left: 12%;
+  color: #f0f0f0;
+  cursor: pointer;
 }
+
 .SideMenu-function {
     background-color: #19AD8B;
 }
 
-.SideMenu-function2 {
-  background-color: #731C1C;
+.LoginSideMenu-text {
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 10%;
+    margin-left: 5%;
 }
 
 #LoginFa-bar {
@@ -177,9 +186,14 @@ html {
   border-radius: 5px;
   background-color: #19ad8b;
   margin-top: 2%;
+  cursor: pointer;
 }
 
 .LoginMain-startBtn:hover {
+  background-color: #12846d;
+}
+
+.SignupMain-startBtn:hover {
   background-color: #12846d;
 }
 
@@ -354,7 +368,7 @@ html {
   width: 300px;
 }
 
-.SideMenu-text {
+.SignupMenu-text {
   font-family: "Noto Sans KR", serif;
   font-size: 20px;
   font-weight: 600;
