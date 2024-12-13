@@ -1,17 +1,17 @@
 package BE.Duch_Ez.dto.group;
 
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
-
 public class ParticipantDto {
 
-    @NotEmpty(message = "그룹 참가자 id가 비어있습니다")
-    private Long id;
-
-    @NotEmpty(message = "그룹 참가자 name이 비어있습니다")
+    private UUID id;  // UUID 타입으로 변경
     private String name;
+
+    private UUID groupId;  // UUID로 변경
+    private String groupName;
 }

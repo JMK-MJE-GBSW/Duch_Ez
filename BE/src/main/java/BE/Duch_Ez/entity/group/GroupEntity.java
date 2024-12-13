@@ -5,17 +5,19 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-@Table(name =  "group_entity")
+@Table(name = "group_entity")
 public class GroupEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;  // UUID 타입으로 변경
 
     @Column(nullable = false, unique = true)
     private String name;
@@ -25,6 +27,9 @@ public class GroupEntity {
     private UserEntity owner;
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ParticipantEntity> participants;
+    private List<ParticipantEntity> participants = new ArrayList<>();
+
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DuchPayEntity> duchPays = new ArrayList<>();
 
 }

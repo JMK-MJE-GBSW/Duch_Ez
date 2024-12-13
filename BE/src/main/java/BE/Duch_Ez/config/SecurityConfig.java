@@ -30,7 +30,8 @@ public class SecurityConfig {
                         .requestMatchers("/user/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // JWT 필터 추가
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+        ; // JWT 필터 추가
 
         return http.build();
     }
