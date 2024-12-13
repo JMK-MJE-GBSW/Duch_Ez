@@ -441,3 +441,40 @@ html {
 .SignupMain-startBtn:hover {
   background-color: #12846d;
 }
+
+/* 그룹 목록 스타일 */
+#recent-group-list {
+  list-style: none; /* 기본 리스트 스타일 제거 */
+  padding: 0; /* 내부 여백 제거 */
+  margin: 0; /* 외부 여백 제거 */
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  gap: 10px; /* 각 항목 간격 */
+}
+
+/* 그룹 항목 스타일 */
+.group-item {
+  padding: 10px 15px;
+  background-color: #f3f3f3;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px; /* 둥근 모서리 */
+  font-size: 16px;
+  color: #333333;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* 그룹 항목 호버 효과 */
+.group-item:hover {
+  background-color: #e8f1ff; /* 호버 시 연한 파란색 */
+  transform: translateY(-2px); /* 약간 위로 이동 */
+}
+
+/* 빈 그룹 메시지 스타일 */
+.group-item.empty {
+  text-align: center;
+  color: #999999;
+  font-style: italic;
+  border: none;
+  background-color: transparent;
+}

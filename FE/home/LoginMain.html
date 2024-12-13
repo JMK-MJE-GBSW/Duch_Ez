@@ -21,12 +21,13 @@
                 <div class="overlay" id="LoginOverlay" onclick="closeMenu('LoginMain-SideMenu', 'LoginOverlay')"></div>
                 <div class="LoginMain-SideMenu" id="LoginMain-SideMenu">
                     <img class="SideMenu-img" src="img-home/logo.svg" alt="SideMenu-img">
-                            <button class="SideMenu-function" onclick="location.href='../group-make/GroupMake.html'">새로운 그룹 만들기</button>
-                        <div class="LoginSideMenu-text">최근 그룹 목록</div> 
-                    </div>
-                    <img class="LoginNav-logo" src="img-home/logo.svg" />
-                    <button class="LoginMain-navLogout" onclick="location.href='./SignupMain.html'">
-                        <i class="fa-solid fa-arrow-right-from-bracket" onclick="toggleMenu()"></i>
+                    <button class="SideMenu-function" onclick="location.href='../group-make/GroupMake.html'">새로운 그룹 만들기</button>
+                    <div class="LoginSideMenu-text">최근 그룹 목록</div>
+                    <ul id="recent-group-list"></ul> <!-- 그룹 목록 표시 -->
+                </div>
+                <img class="LoginNav-logo" src="img-home/logo.svg" />
+                <button class="LoginMain-navLogout" onclick="location.href='./SignupMain.html'">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     <div class="navLogout-text">로그아웃</div>
                 </button>
             </div>
