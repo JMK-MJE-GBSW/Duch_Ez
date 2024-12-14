@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (!response.ok) {
               const errorMessage = await response.text();
               throw new Error(errorMessage);
-          }
+          }     
 
           const responseData = await response.json(); // JSON 파싱
           const token = responseData.token; // "token" 속성 추출

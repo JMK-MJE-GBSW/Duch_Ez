@@ -37,12 +37,21 @@ function renderGroupNames(groups) {
         emptyMessage.textContent = "등록된 그룹이 없습니다.";
         groupListContainer.appendChild(emptyMessage);
     } else {
-        groups.forEach(group => {
+        // 그룹이 있을 때
+        for (let i = 0; i < groups.length; i++) {
+            const group = groups[i];
             const groupItem = document.createElement("div");
             groupItem.className = "group-item"; // 스타일링 클래스
             groupItem.textContent = group.name; // 그룹 이름만 표시
+
+            // 그룹 클릭 시 리다이렉트
+            groupItem.addEventListener("click", function () {
+                // 예: 그룹 상세 페이지로 이동 (그룹 ID를 URL에 포함)
+                window.location.href = `../group-detail/groupDetail.html?id=${group.id}`;
+            });
+
             groupListContainer.appendChild(groupItem);
-        });
+        }
     }
 }
 
@@ -57,7 +66,7 @@ async function fetchGroups() {
     const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
-            "Authorization": token, // Authorization 헤더 추가
+            "Authorization": `Bearer ${token}`, // Authorization 헤더에 Bearer 추가
             "Content-Type": "application/json",
         },
     });
