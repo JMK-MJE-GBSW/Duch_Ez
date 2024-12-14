@@ -33,14 +33,14 @@ function renderGroupNames(groups) {
     if (groups.length === 0) {
         // 그룹이 없을 때 기본 메시지 표시
         const emptyMessage = document.createElement("div");
-        emptyMessage.className = "group-item empty"; // 스타일링 클래스
+        emptyMessage.className = "group-item empty";
         emptyMessage.textContent = "등록된 그룹이 없습니다.";
         groupListContainer.appendChild(emptyMessage);
     } else {
         groups.forEach(group => {
             const groupItem = document.createElement("div");
-            groupItem.className = "group-item"; // 스타일링 클래스
-            groupItem.textContent = group.name; // 그룹 이름만 표시
+            groupItem.className = "group-item";
+            groupItem.textContent = group.name;
             groupListContainer.appendChild(groupItem);
         });
     }

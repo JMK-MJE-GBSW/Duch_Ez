@@ -473,9 +473,14 @@ html {
 
 /* 빈 그룹 메시지 스타일 */
 .group-item.empty {
+  display: flex;
+  justify-content: center;
   text-align: center;
   color: #999999;
-  font-style: italic;
   border: none;
   background-color: transparent;
+  font-family: "Noto Sans KR", serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 5%;
 }

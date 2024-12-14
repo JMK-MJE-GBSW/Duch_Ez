@@ -35,7 +35,7 @@ html {
 
 .GroupBefore-SideMenu {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     position: fixed;
     top: 0;
@@ -73,7 +73,12 @@ html {
     left: 0;
 }
 
-.SideMenu-function, .SideMenu-function2 {
+.SideMenu-img {
+    width: 300px;
+    margin-left: 12%;
+}
+
+.SideMenu-function {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,15 +88,24 @@ html {
     font-weight: 600;
     font-size: 15px;
     border-radius: 10px;
-    margin-top: 5%;  
+    margin-top: 5%;
+    margin-left: 12%;
 }
 
 .SideMenu-function {
     background-color: #19AD8B;
 }
 
-.SideMenu-function2 {
-    background-color: #731C1C;
+.SideMenu-function:hover {
+    background-color: #12846d;
+}
+
+.LoginSideMenu-text {
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 10%;
+    margin-left: 5%;
 }
 
 #GroupBefore-Fa-bar {
@@ -174,6 +188,11 @@ html {
     background-color: #19AD8B;
     margin-top: 2%;
 }
+
+.GroupBefore-btn:hover {
+    background-color:  #12846d;
+}
+
 
 .GroupBefore-text {
     font-family: "Noto Sans KR", serif;
