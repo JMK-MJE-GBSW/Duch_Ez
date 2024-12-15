@@ -25,7 +25,6 @@ async function openMenu(menuId, overlayId) {
     overlay.classList.add('active');
 }
 
-// 그룹 이름만 렌더링
 function renderGroupNames(groups) {
     const groupListContainer = document.getElementById("recent-group-list");
     groupListContainer.innerHTML = ""; // 기존 목록 초기화
@@ -33,27 +32,26 @@ function renderGroupNames(groups) {
     if (groups.length === 0) {
         // 그룹이 없을 때 기본 메시지 표시
         const emptyMessage = document.createElement("div");
-        emptyMessage.className = "group-item empty"; // 스타일링 클래스
+        emptyMessage.className = "group-item empty";
         emptyMessage.textContent = "등록된 그룹이 없습니다.";
         groupListContainer.appendChild(emptyMessage);
     } else {
         // 그룹이 있을 때
-        for (let i = 0; i < groups.length; i++) {
-            const group = groups[i];
+        groups.forEach(group => {
             const groupItem = document.createElement("div");
-            groupItem.className = "group-item"; // 스타일링 클래스
-            groupItem.textContent = group.name; // 그룹 이름만 표시
+            groupItem.className = "group-item";
+            groupItem.textContent = group.name;
 
-            // 그룹 클릭 시 리다이렉트
+            // 그룹 클릭 시 리다이렉트 (그룹 이름을 URL 파라미터로 전달)
             groupItem.addEventListener("click", function () {
-                // 예: 그룹 상세 페이지로 이동 (그룹 ID를 URL에 포함)
-                window.location.href = `../group-detail/groupDetail.html?id=${group.id}`;
+                window.location.href = `../Group-complete/Group-before.html?name=${encodeURIComponent(group.name)}`;
             });
 
             groupListContainer.appendChild(groupItem);
-        }
+        });
     }
 }
+
 
 // 백엔드에서 그룹 데이터 가져오기
 async function fetchGroups() {
@@ -66,7 +64,7 @@ async function fetchGroups() {
     const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
-            "Authorization": `Bearer ${token}`, // Authorization 헤더에 Bearer 추가
+            "Authorization": token, // Authorization 헤더에 Bearer 추가
             "Content-Type": "application/json",
         },
     });
