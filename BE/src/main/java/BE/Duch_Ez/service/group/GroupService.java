@@ -3,8 +3,6 @@ package BE.Duch_Ez.service.group;
 import BE.Duch_Ez.dto.group.GroupCreateRequest;
 import BE.Duch_Ez.dto.group.GroupDto;
 import BE.Duch_Ez.dto.group.ParticipantDto;
-import BE.Duch_Ez.entity.group.DuchPayEntity;
-import BE.Duch_Ez.entity.group.DuchPayParticipantEntity;
 import BE.Duch_Ez.entity.group.GroupEntity;
 import BE.Duch_Ez.entity.group.ParticipantEntity;
 import BE.Duch_Ez.entity.user.UserEntity;
@@ -15,10 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -132,7 +127,6 @@ public class GroupService {
 
 
 
-    ///
 
 
 }

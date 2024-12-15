@@ -99,7 +99,6 @@ public class GroupController {
         }
     }
 
-
     @PostMapping("/{groupName}/duch-pay")
     public ResponseEntity<?> createDuchPay(@PathVariable String groupName, @RequestBody @Valid DuchPayRequest request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -110,6 +109,16 @@ public class GroupController {
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("오류 발생: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/{groupName}/duch-pay")
+    public ResponseEntity<?> getDuchPay(@PathVariable String groupName) {
+        try {
+
+            return ResponseEntity.ok(            duchPayService.getAllDuchPay(groupName));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 

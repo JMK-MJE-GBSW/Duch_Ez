@@ -9,5 +9,5 @@ import java.util.UUID;
 public interface DuchPayRepository extends JpaRepository<DuchPayEntity, UUID> {
 
     // 특정 그룹에 속한 더치페이 항목 조회
-    List<DuchPayEntity> findByGroup_Id(UUID groupId);
+    List<DuchPayEntity> findByGroupName(String groupName);
 }

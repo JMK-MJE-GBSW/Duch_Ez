@@ -2,6 +2,8 @@ package BE.Duch_Ez.service.group;
 
 import BE.Duch_Ez.dto.group.DuchPayRequest;
 import BE.Duch_Ez.dto.group.DuchPayResponse;
+import BE.Duch_Ez.dto.group.GroupDto;
+import BE.Duch_Ez.dto.group.ParticipantDto;
 import BE.Duch_Ez.entity.group.*;
 import BE.Duch_Ez.repository.group.DuchPayRepository;
 import BE.Duch_Ez.repository.group.GroupRepository;
@@ -82,10 +84,41 @@ public class DuchPayService {
 
             for (DuchPayParticipantEntity participant : duchPay.getParticipants()) {
                 String participantName = participant.getParticipant().getName();
-                debts.computeIfAbsent(participantName, k -> new HashMap<>())
-                        .merge(payerName, perPersonShare, Integer::sum);
+
+                if (!participantName.equals(payerName)) {
+                    debts.computeIfAbsent(participantName, k -> new HashMap<>())
+                            .merge(payerName, perPersonShare, Integer::sum);
+                }
+
             }
         }
         return debts;
+    }
+
+
+
+    public List<DuchPayResponse> getAllDuchPay(String groupName) {
+        return duchPayRepository.findByGroupName(groupName).stream()
+                .map(duchPay -> {
+                    DuchPayResponse duchPayResponse = new DuchPayResponse();
+                    duchPayResponse.setId(duchPay.getId());
+                    duchPayResponse.setTitle(duchPay.getTitle());
+                    duchPayResponse.setTotalAmount(duchPay.getTotalAmount());
+                    duchPayResponse.setPayerId(duchPay.getPayer().getId());
+                    // 참가자 리스트를 DTO로 변환
+                    List<DuchPayResponse.ParticipantDebt> participantDebts = duchPay.getParticipants().stream()
+                            .map(ParticipantDebts -> {
+                                DuchPayResponse.ParticipantDebt Debt = new DuchPayResponse.ParticipantDebt();
+                                Debt.setParticipantId(ParticipantDebts.getParticipant().getId());
+                                Debt.setParticipantName(ParticipantDebts.getParticipant().getName());
+                                Debt.setAmountOwed(ParticipantDebts.getAmountOwed());
+                                return Debt;
+                            })
+                            .collect(Collectors.toList());
+
+                    duchPayResponse.setParticipantDebts(participantDebts);
+                    return duchPayResponse;
+                })
+                .collect(Collectors.toList());
     }
 }

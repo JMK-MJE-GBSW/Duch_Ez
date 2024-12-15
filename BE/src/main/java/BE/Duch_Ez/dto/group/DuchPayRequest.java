@@ -16,7 +16,7 @@ public class DuchPayRequest {
     private String title; // 더치페이 항목 이름
 
     @NotNull(message = "금액을 입력해주세요.")
-        private Integer totalAmount; // 총 금액
+    private Integer totalAmount; // 총 금액
 
     @NotNull(message = "돈 낸 사람의 ID를 입력해주세요.")
     private UUID payerId; // 돈 낸 사람 (그룹 참가자 ID)
