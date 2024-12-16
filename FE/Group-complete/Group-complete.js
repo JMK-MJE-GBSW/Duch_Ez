@@ -76,12 +76,16 @@ function renderGroupDetail(groupDetail) {
     // 그룹 이름
     const groupNameElement = document.createElement("h1");
     groupNameElement.textContent = groupDetail.name;
+    groupNameElement.classList.add("group-name"); // 그룹 이름에 클래스 추가
 
-    // 참가자 목록
-    const participantList = document.createElement("ul");
+    // 참가자 목록 컨테이너
+    const participantList = document.createElement("div");
+    participantList.classList.add("participant-list"); // 참가자 목록에 클래스 추가
+
     groupDetail.participants.forEach(participant => {
-        const listItem = document.createElement("li");
+        const listItem = document.createElement("span");
         listItem.textContent = participant.name; // 참가자 이름
+        listItem.classList.add("participant-item"); // 각 참가자 항목에 클래스 추가
         participantList.appendChild(listItem);
     });
 
@@ -90,6 +94,8 @@ function renderGroupDetail(groupDetail) {
     groupContainer.appendChild(groupNameElement);
     groupContainer.appendChild(participantList);
 }
+    
+
 
 // 데이터 가져오기 및 렌더링 실행
 fetchGroupDetail(groupName)

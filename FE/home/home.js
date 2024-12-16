@@ -25,6 +25,7 @@ async function openMenu(menuId, overlayId) {
     overlay.classList.add('active');
 }
 
+
 function renderGroupNames(groups) {
     const groupListContainer = document.getElementById("recent-group-list");
     groupListContainer.innerHTML = ""; // 기존 목록 초기화
