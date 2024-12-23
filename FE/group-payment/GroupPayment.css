@@ -1,393 +1,184 @@
+/* 공통 스타일 */
 * {
     margin: 0;
     padding: 0;
-    border: none;
     box-sizing: border-box;
 }
+html, body {
+    height: 100%; /* 전체 화면 높이 */
+    margin: 0; /* margin 제거 */
+    background-color: #062623; /* 배경색 설정 */
+}
 
-html {
-    height: 100%;
-    background-color: #062623;
-    overflow-x: hidden;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .GroupPayment-main {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 125vh;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #040D09; /* 검정 배경 */
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.GroupPayment-frame {
-    width: 640px;
-    height: 100%;
-    background-color: #040D09;
-}
 
+/* 네비게이션 */
 .GroupPayment-nav {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    text-align: center;
     border-bottom: 1px solid #062623;
-    padding: 5px;
-}
-
-.GroupPayment-SideMenu {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: -400px;
-    width: 400px;
-    height: 100%;
-    background-color: #222;
-    color: white;
-    overflow: auto;
-    transition: left 0.1s ease;
-    z-index: 1500;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    overflow-x: hidden;
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0.3s, opacity 0.3s ease;
-    z-index: 1000;
-}
-
-.overlay.active {
-    visibility: visible;
-    opacity: 1;
-}
-
-.GroupPayment-SideMenu.active {
-    left: 0;
-}
-
-.SideMenu-img {
-    width: 300px;
-    margin-left: 12%;
-}
-
-.SideMenu-function {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 50px;
-    font-family: "Noto Sans KR", serif;
-    font-weight: 600;
-    font-size: 15px;
-    border-radius: 10px;
-    margin-top: 5%;
-    margin-left: 12%;
-}
-
-.SideMenu-function {
-    background-color: #19AD8B;
-}
-
-.LoginSideMenu-text {
-    font-family: "Noto Sans KR", serif;
-    font-weight: 600;
-    font-size: 18px;
-    margin-top: 10%;
-    margin-left: 5%;
-}
-
-#GroupPayment-Fa-bar {
-    width: 50px;
-    font-size: 40px;
-    margin-right: 3%;
-    color: #fff;
-    cursor: pointer;
-    padding: 10px;
-    box-sizing: content-box;
-    transform: translate(-10%);
+    padding-bottom: 10px;
 }
 
 .GroupPayment-Nav-logo {
-    position: relative;
-    transform: translate(-30%);
     width: 200px;
+    margin-left: 10px;
 }
 
 .GroupPayment-NavLogout {
     display: flex;
     align-items: center;
-    text-align: center;
-    font-family: "Noto Sans KR", serif;
-    font-weight: 600;
-    letter-spacing: 2px;
-    font-size: 15px;
-    background-color: transparent;
     cursor: pointer;
     gap: 10px;
-    margin-left: 35%;
+
 }
 
 .fa-arrow-right-from-bracket {
-    font-size: 35px;
-    color: #fff;
+    font-size: 20px;
 }
 
 .navLogout-text {
-    font-family: "Noto Sans KR", serif;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #fff;
+    color: white;
+    font-size: 14px;
 }
 
+/* 제목 */
 .GroupPayment-texts {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: column;
-    font-family: "Noto Sans KR", serif;
-    font-weight: 600;
-    margin-left: 5%;
-    margin-top: 3%;
+    text-align: center;
+    margin: 20px 0;
+    color: #f0f0f0;
 }
 
 .GroupPayment-text {
-    font-size: 35px;
-    line-height: 1.5;
-    color: #f0f0f0;
+    color: wheat;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .GroupPayment-text2 {
-    font-size: 15px;
-    color: #999;
+    font-size: 14px;
+    color: wheat;
 }
 
+/* 폼 스타일 */
 .GroupPayment-function {
+    flex: 1;
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    gap: 15px;
+    justify-content: space-evenly;
 }
 
-.GroupPayment-item {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: column;
-    width: 100px;
-    margin-left: 8%;
-    margin-top: 10%;
+.GroupPayment-item, .GroupPayment-total, .GroupPayment-payer, .GroupPayment-spend, .GroupPayment-DateBox {
+    margin: 10px 0;
 }
 
-.GroupPayment-text3 {
-    font-size: 15px;
-    font-family: "Noto Sans KR", serif;
-    font-weight: 600;
+label {
+    display: block;
+    font-size: 14px;
     color: #f0f0f0;
-    line-height: 2;
+    margin-bottom: 5px;
 }
 
-.GroupPayment-box {
-    display: flex; /*공통 스타일 */
-    align-items: center;
-    width: 450px;
-    height: 50px;
-    border-radius: 10px;
-    margin-left: 1%;
-    border: solid 0.5px #999;
-    background-color: transparent;
-}
-
-#GroupPayment-BoxText { /*공통 스타일 */
-    border: none;
-    outline: none;
-    background-color: transparent;
-    font-family: "Noto Sans KR", serif;
-    font-size: 15px;
-    font-weight: 700;   
-    color: #f0f0f0;
-    width: 500px;
-    padding: 10px 10px;
-}
-
-.GroupPayment-total {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: column;
-    width: 100px;
-    margin-left: 8%;
-}
-
-.GroupPayment-text4 {
-    font-size: 15px;
-    font-family: "Noto Sans KR", serif;
-    font-weight: 600;
-    color: #f0f0f0;
-    line-height: 2;
-}
-
-input[type="number"] {
-    -moz-appearance: textfield; 
-    appearance: textfield; 
-  }
-  
-  input[type="number"]::-webkit-inner-spin-button, 
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  
-
-.GroupPayment-payer {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: column;
-    width: 100px;
-    margin-left: 8%;
-}
-
-.GroupPayment-text5 {
-    font-size: 15px;
-    font-family: "Noto Sans KR", serif;
-    font-weight: 600;
-    color: #f0f0f0;
-    line-height: 2;
-}
-
-.GroupPayment-spend {
-    font-family: "Noto Sans KR", serif;
-    font-weight: 600;
-    font-size: 20px;
-    color: #f0f0f0;
-    margin-left: 8%;
-}
-
-.GroupPayment-member {
-    width: 100px;
-    height: 35px;
-    background-color: #999;
-    border-radius: 10px;
-    margin-top: 1%;
-}
-
-.GroupPayment-TextBox img {
-    max-width: 24px;
-    height: auto;
-}
-
-.GroupPayment-TextBox {
-    display: flex;
-    align-items: center;
-    font-family: "Noto Sans KR", serif;
-    font-weight: 600;
-    font-size: 12px;
-    width: 500px;
-    height: 35px;
-    border-radius: 10px;
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #999;
+    border-radius: 5px;
     background-color: #222;
     color: #f0f0f0;
-    margin-left: 5%;
+    font-size: 14px;
+}
+/* 체크박스 스타일 */
+.GroupPayment-checkboxes {
+    display: flex;
+    flex-wrap: wrap; /* 가로로 배치 후 줄바꿈 허용 */
+    gap: 10px; /* 체크박스 간격 */
 }
 
-.GroupPayment-texts2 {
+.GroupPayment-checkboxes label {
     display: flex;
     align-items: center;
-    margin-left: 3%;
-    gap: 5px;
+    gap: 5px; /* 체크박스와 텍스트 간격 */
+    padding: 5px 10px; /* 내부 여백 */
+    background-color: #333;
+    color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px; /* 텍스트 크기 */
 }
 
-#GroupPayment-BoxDate { 
-    border: none; 
-    outline: none; 
-    background-color: transparent; 
-    font-family: "Noto Sans KR", serif; 
-    font-size: 15px; 
-    font-weight: 700;    
-    color: #f0f0f0; 
-    width: 120px; 
-    padding: 10px; 
-    pointer-events: none;  
-    cursor: pointer; 
-} 
- 
-.GroupPayment-DateBox { 
-    display: flex;  
-    align-items: center;  
-    border: 0.5px solid #999; 
-    width: 450px; 
-    border-radius: 10px; 
-    margin-left: 8%; 
-    padding: 5px; 
-    cursor: pointer; 
-} 
-
-.GroupPayment-DateBox img { 
-    max-width: 20px; 
-    height: auto; 
-    margin-left: 2%; 
+.GroupPayment-checkboxes input {
+    width: 12px; /* 체크박스 너비 */
+    height: 12px; /* 체크박스 높이 */
+    appearance: none;
+    border: 2px solid #999;
+    border-radius: 3px;
+    background-color: #222;
+    margin: 0;
     cursor: pointer;
 }
 
-    input[type="date"]::-webkit-calendar-picker-indicator {
-        display: none;
-        -webkit-appearance: none;
-        appearance: none; 
-        -webkit-appearance: none; 
-        -moz-appearance: none; 
-        border: 1px solid #ccc; 
-        padding: 10px;
-        border-radius: 5px; 
-        background-color: #f9f9f9; 
-        font-size: 16px;
-    }
+.GroupPayment-checkboxes input:checked {
+    background-color: #19AD8B;
+    border-color: #19AD8B;
+}
+
+/* 라벨 텍스트 */
+.GroupPayment-checkboxes input + span {
+    font-size: 14px; /* 텍스트 크기 */
+    color: wheat;
+}
+
+/* 강조된 텍스트 */
+.GroupPayment-checkboxes label span {
+    color: wheat;
+    font-weight: bold;
+}
+
+/* 버튼 */
+.GroupPayment-btn, .GroupPayment-btn2 {
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 .GroupPayment-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
-    height: 60px;
-    border-radius: 5px;
-    font-family: "Noto Sans KR", serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: #f0f0f0;
     background-color: #19AD8B;
-    cursor: pointer;
-    margin-top: 5%;
-    margin-left: 10%;
-}
-
-.GroupPayment-btn:hover {
-    background-color: #12846d;
+    color: #fff;
 }
 
 .GroupPayment-btn2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
-    height: 60px;
-    border-radius: 5px;
-    font-family: "Noto Sans KR", serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: #f0f0f0;
     border: 1px solid #999;
-    cursor: pointer;
-    margin-top: 1%;
-    margin-left: 10%;   
+    color: #f0f0f0;
 }
 
-.GroupPayment-btn2:hover {
-    border-color: #12846d;
+.GroupPayment-payer label {
+    font-size: 16px;
+    color: white !important; /* 스타일 우선 적용 */
+    font-weight: bold;
+}
+
+.GroupPayment-text6 {
+    color: white;
 }

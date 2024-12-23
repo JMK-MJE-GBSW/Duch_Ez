@@ -15,11 +15,9 @@
         <div class="GroupPayment-frame">
             <!-- 네비게이션 -->
             <div class="GroupPayment-nav">
-                <img class="GroupPayment-Nav-logo" src="img-GroupPayment/logo.svg" alt="Logo">
-                <button class="GroupPayment-NavLogout" onclick="location.href='../home/SignupMain.html'">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    <div class="navLogout-text">로그아웃</div>
-                </button>
+                <a href="../home/LoginMain.html">
+                    <img class="GroupPayment-Nav-logo" src="img-GroupPayment/logo.svg" alt="Logo">
+                </a>
             </div>
 
             <!-- 페이지 제목 -->
@@ -30,35 +28,41 @@
 
             <!-- 입력 폼 -->
             <div class="GroupPayment-function">
+                <!-- 결제 품목 -->
                 <div class="GroupPayment-item">
-                    <div class="GroupPayment-text3">결제 품목</div>
-                    <input type="text" id="item-title" placeholder="결제할 품목을 입력해주세요">
+                    <label for="item-title" class="GroupPayment-text3">결제 품목</label>
+                    <input type="text" id="item-title" placeholder="예: 점심 식사, 교통비">
                 </div>
-
+            
+                <!-- 총 결제액 -->
                 <div class="GroupPayment-total">
-                    <div class="GroupPayment-text4">총 결제액</div>
-                    <input type="number" id="total-amount" placeholder="총 결제액을 입력해주세요">
+                    <label for="total-amount" class="GroupPayment-text4">총 결제액</label>
+                    <input type="number" id="total-amount" placeholder="예: 50000">
                 </div>
-
+            
+                <!-- 결제자 -->
                 <div class="GroupPayment-payer">
-                    <div class="GroupPayment-text5">결제자</div>
-                    <select id="payer-select">
+                    <label for="payer-select" class="GroupPayment-text5">결제자</label>
+                    <select id="payer-select" class="GroupPayment-dropdown">
                         <option value="">결제자를 선택해주세요</option>
                     </select>
                 </div>
-
+            
+                <!-- 참가자 -->
                 <div class="GroupPayment-spend">
                     <div class="GroupPayment-text6">누가 쓴 돈인가요?</div>
-                    <div id="participants-checkboxes">
+                    <div id="participants-checkboxes" class="GroupPayment-checkboxes">
                         <!-- 참가자 체크박스가 동적으로 생성됩니다 -->
                     </div>
                 </div>
-
+            
+                <!-- 날짜 -->
                 <div class="GroupPayment-DateBox">
-                    <img src="img-GroupPayment/calendar.svg" alt="calendar" id="calendar-icon">
-                    <input type="date" id="payment-date">
+                    <label for="payment-date" class="GroupPayment-text3">날짜</label>
+                    <input type="date" id="payment-date" style="pointer-events: auto; cursor: text;">
                 </div>
-
+            
+                <!-- 버튼 -->
                 <div class="GroupPayment-btn" onclick="submitPayment()">작성 완료</div>
                 <div class="GroupPayment-btn2" onclick="location.href='../Group-complete/Group-before.html'">뒤로 가기</div>
             </div>
