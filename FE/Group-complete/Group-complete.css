@@ -1,0 +1,434 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    background-color: #062623;
+    overflow-x: hidden;
+}
+
+.GroupBefore-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+
+.GroupBefore-frame {
+    width: 640px;
+    height: 100%;
+    background-color: #040D09;
+}
+
+.GroupBefore-nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #062623;
+    padding: 5px;
+}
+/* 사이드 메뉴 기본 스타일 */
+.SideMenu {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 400px;
+    height: 100%;
+    background-color: #222;
+    color: white;
+    overflow: auto;
+    transition: left 0.1s ease;
+    z-index: 1500;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* 사이드 메뉴가 활성화된 경우 */
+  .SideMenu.active {
+    left: 0;
+  }
+  
+  /* 사이드 메뉴 이미지 */
+  .SideMenu-img {
+    width: 300px;
+    margin-left: 12%;
+  }
+  
+  /* 사이드 메뉴 기능 버튼 */
+  .SideMenu-function {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 300px;
+    height: 50px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-left: 12%;
+    color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  /* 사이드 메뉴 기능 버튼 기본 색상 */
+  .SideMenu-function {
+    background-color: #19AD8B;
+  }
+  
+  /* 사이드 메뉴 기능 버튼 hover 상태 */
+  .SideMenu-function:hover {
+    background-color: #12846d;
+  }
+  
+  /* 사이드 메뉴 텍스트 */
+  .SideMenu-text {
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 10%;
+    margin-left: 5%;
+  }
+  
+  /* 오버레이 배경 */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s ease;
+    z-index: 1000;
+  }
+  
+  /* 오버레이 활성화 상태 */
+  .overlay.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* 사이드 메뉴 아이콘 */
+  #LoginFa-bar, #SignupFa-bar {
+    width: 50px;
+    font-size: 40px;
+    margin-right: 3%;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px; 
+    box-sizing: content-box;
+    transform: translate(-10%);
+  }
+  
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* 그룹 목록 스타일 */
+#recent-group-list {
+    width: 350px;
+    list-style: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 내부 여백 제거 */
+    margin: 0; /* 외부 여백 제거 */
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    gap: 30px; /* 각 항목 간격 */
+    margin-top: 5%;
+    margin-left: 3%;
+  }
+  
+  /* 그룹 항목 스타일 */
+  .group-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 25px 35px;
+    background-color: #062623;
+    border-radius: 8px; /* 둥근 모서리 */
+    font-family: "Noto Sans KR", serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  /* 빈 그룹 메시지 스타일 */
+  .group-item.empty {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #999999;
+    border: none;
+    background-color: transparent;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 5%;
+  }
+
+#GroupBefore-Fa-bar {
+    width: 50px;
+    font-size: 40px;
+    margin-right: 3%;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    box-sizing: content-box;
+    transform: translate(-10%);
+}
+
+.GroupBeforeNav-logo {
+    position: relative;
+    transform: translate(-30%);
+    width: 200px;
+}
+
+.GroupBefore-NavLogout {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 15px;
+    background-color: transparent;
+    cursor: pointer;
+    gap: 10px;
+    margin-left: 35%;
+}
+
+.fa-arrow-right-from-bracket {
+    font-size: 35px;
+    color: #fff;
+}
+
+.navLogout-text {
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.Groups {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.Group {
+    width: 570px;
+    height: 130px;
+    border-radius: 5px;
+    background-color: #222;
+}
+
+.GroupBefore-btnParent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.GroupBefore-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 60px;
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #f0f0f0;
+    background-color: #19AD8B;
+    margin-top: 2%;
+}
+
+.GroupBefore-btn:hover {
+    background-color:  #12846d;
+}
+
+
+.GroupBefore-text {
+    font-family: "Noto Sans KR", serif;
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 10%;
+    color: #999;
+}
+
+/* 불러온 그룹 정보 css */
+/* 전체 그룹 컨테이너 스타일 */
+.Group {
+    text-align: center; /* 텍스트 가운데 정렬 */
+    margin-top: 20px; /* 상단 여백 */
+}
+.participant-list {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* 각 참가자 항목 스타일 */
+.participant-item {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* 참가자 항목에 마우스 올렸을 때 스타일 변경 */
+.participant-item:hover {
+    background-color: #19AD8B; /* 초록색으로 변경 */
+    color: white;
+}
+
+.group-name {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 32px; /* 제목 크기 키우기 */
+    font-weight: bold;
+    color: #FF6347; /* 제목 색상 변경 (오렌지색으로 가시성 높임) */
+    margin-bottom: 20px;
+    text-align: center; /* 제목 가운데 정렬 */
+}
+
+/* Group-complete.css */
+
+/* 더치페이 항목 스타일 */
+.Groups {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    margin-top: 2%; /* 적절한 간격 추가 */
+}
+
+.Group {
+    width: 570px;
+    height: auto; /* 높이 자동 조정 */
+    border-radius: 5px;
+    background-color: #222;
+    padding: 20px;
+    text-align: center;
+}
+
+.group-name {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #f0f0f0; /* 그룹 이름에 초록색을 적용 */
+    margin-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase; /* 그룹 이름을 대문자로 */
+    letter-spacing: 2px; /* 문자 간 간격 추가 */
+}
+
+
+.dutch-pay-items {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 항목 간 간격 */
+    align-items: stretch; /* 항목 크기 통일 */
+}
+
+.item {
+    width: 500px; /* 전체 너비 활용 */
+    padding: 15px;
+    background-color: #1E2F2F; /* 짙은 배경색 */
+    color: #f0f0f0;
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* 부드러운 그림자 */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.item:hover {
+    background-color: #19AD8B; /* 호버 시 강조 */
+    transform: scale(1.03); /* 살짝 확대 */
+    color: #fff;
+}
+
+.item h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.total-spent {
+    font-size: 1.5em; /* 크기 조정 */
+    color: #FFD700; /* 골드 컬러로 강조 */
+    margin-top: 15px;
+    text-align: center;
+}
+
+.debt-relations {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #2A3D3D; /* 배경색 변경 */
+    color: #f0f0f0;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.debt-relations h3 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 1%;
+    text-align: center;
+    color: #f0f0f0; /* 제목 강조 */
+}
+
+.debt-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    color: #ddd;
+}
+
+.debt-list .debt-item {
+    padding: 10px;
+    background-color: #444; /* 부드러운 배경색 */
+    border-radius: 5px;
+    color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+.debt-list .debt-item:hover {
+    background-color: #19AD8B; /* 호버 시 강조 */
+    color: #fff;
+}

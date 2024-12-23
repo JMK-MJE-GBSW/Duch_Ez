@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>그룹 완료 생성 페이지</title>
+    <link rel="stylesheet" href="Group-complete.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6ed6a67810.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="GroupBefore-main">
+        <div class="GroupBefore-frame">
+            <div class="GroupBefore-nav">
+                <i id="GroupBefore-Fa-bar" class="fa-solid fa-bars" onclick="openMenu('SideMenu', 'GroupBeforeOverlay')"></i>
+                <div class="overlay" id="GroupBeforeOverlay" onclick="closeMenu('SideMenu', 'GroupBeforeOverlay')"></div>
+                <div class="SideMenu" id="SideMenu">
+                    <img class="SideMenu-img" src="img-GroupComplete/logo.svg" alt="SideMenu-img">
+                    <button class="SideMenu-function" onclick="location.href='../group-make/GroupMake.html'">새로운 그룹 만들기</button>
+                    <div class="SideMenu-text">최근 그룹 목록</div>
+                    <ul id="recent-group-list"></ul>
+                </div>
+
+                <a href="../home/LoginMain.html">
+                    <img class="GroupBeforeNav-logo" src="img-GroupComplete/logo.svg" alt="Logo">
+                </a>
+
+                <a id="logoutButton" class="GroupBefore-NavLogout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <div class="navLogout-text">로그아웃</div>
+                </a>
+            </div>
+
+            <!-- 그룹 내용 -->
+            <div class="Groups">
+                <div class="Group">
+                    <h2 class="group-name">그룹 이름</h2>
+                </div>
+            </div>
+
+            <!-- 항목 리스트 및 버튼 -->
+            <div class="GroupBefore-btnParent">
+                <div class="GroupBefore-btn" onclick="goToGroupPaymentPage()">새 항목 만들기</div>
+                <div class="dutch-pay-items"></div>
+            </div>
+
+            <!-- 채무 관계 표시 -->
+            <div class="debt-relations">
+                <h3>채무 관계</h3>
+                <div class="debt-list"></div>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script src="Group-complete.js"></script>
+</body>
+</html>
