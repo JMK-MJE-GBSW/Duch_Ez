@@ -8,69 +8,63 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6ed6a67810.js" crossorigin="anonymous"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="GroupPayment.js"></script>
     <title>결제 항목</title>
 </head>
 <body>
     <div class="GroupPayment-main">
         <div class="GroupPayment-frame">
+            <!-- 네비게이션 -->
             <div class="GroupPayment-nav">
-                <i id="GroupPayment-Fa-bar" class="fa-solid fa-bars" onclick="openMenu('GroupPayment-SideMenu', 'GroupPaymentOverlay')"></i>
-                <div class="overlay" id="GroupPaymentOverlay" onclick="closeMenu('GroupPayment-SideMenu', 'GroupPaymentOverlay')"></div>
-                <div id="GroupPayment-SideMenu" class="GroupPayment-SideMenu">
-                    <img class="SideMenu-img" src="img-GroupPayment/logo.svg" alt="SideMenu-img">
-                    <div class="SideMenu-function">새로운 그룹 만들기</div>
-                    <div class="LoginSideMenu-text">최근 그룹 목록</div> 
-                </div>
                 <img class="GroupPayment-Nav-logo" src="img-GroupPayment/logo.svg" alt="Logo">
                 <button class="GroupPayment-NavLogout" onclick="location.href='../home/SignupMain.html'">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     <div class="navLogout-text">로그아웃</div>
                 </button>
             </div>
+
+            <!-- 페이지 제목 -->
             <div class="GroupPayment-texts">
                 <div class="GroupPayment-text">결제 항목 추가하기</div>
                 <div class="GroupPayment-text2">새로운 결제 항목을 추가해주세요</div>
             </div>
+
+            <!-- 입력 폼 -->
             <div class="GroupPayment-function">
                 <div class="GroupPayment-item">
                     <div class="GroupPayment-text3">결제 품목</div>
-                    <div class="GroupPayment-box">
-                        <input type="text" id="GroupPayment-BoxText" name="GroupPayment-BoxText" placeholder="결제할 품목을 입력해주세요" required>
-                    </div>
+                    <input type="text" id="item-title" placeholder="결제할 품목을 입력해주세요">
                 </div>
+
                 <div class="GroupPayment-total">
                     <div class="GroupPayment-text4">총 결제액</div>
-                    <div class="GroupPayment-box">
-                        <input type="number" id="GroupPayment-BoxText" name="GroupPayment-BoxText" placeholder="총 결제액을 입력해주세요" required>
-                    </div>
+                    <input type="number" id="total-amount" placeholder="총 결제액을 입력해주세요">
                 </div>
+
                 <div class="GroupPayment-payer">
-                    <div class="GroupPayment-text5">결제자</div> 
-                    <div class="GroupPayment-box">
-                        <input type="text" id="GroupPayment-BoxText" name="GroupPayment-BoxText" placeholder="결제자를 선택해주세요" required>
-                    </div>
+                    <div class="GroupPayment-text5">결제자</div>
+                    <select id="payer-select">
+                        <option value="">결제자를 선택해주세요</option>
+                    </select>
                 </div>
+
                 <div class="GroupPayment-spend">
                     <div class="GroupPayment-text6">누가 쓴 돈인가요?</div>
-                    <div class="GroupPayment-member"></div>
-                </div>
-                <div class="GroupPayment-TextBox">
-                    <div class="GroupPayment-texts2">
-                        <img src="img-GroupPayment/Notice.png" alt="notice">
-                        돈을 낸 사람도 해당한다면 포함해주세요
+                    <div id="participants-checkboxes">
+                        <!-- 참가자 체크박스가 동적으로 생성됩니다 -->
                     </div>
                 </div>
-                <div class="GroupPayment-DateBox"> 
-                    <img src="img-GroupPayment/calendar.svg" alt="calendar" id="calendar-icon"> 
-                    <input type="date" id="GroupPayment-BoxDate" name="GroupPayment-BoxDate" required> 
+
+                <div class="GroupPayment-DateBox">
+                    <img src="img-GroupPayment/calendar.svg" alt="calendar" id="calendar-icon">
+                    <input type="date" id="payment-date">
                 </div>
-                    <div class="GroupPayment-btn">작성 완료</div>
-                    <div class="GroupPayment-btn2" onclick="location.href='../Group-complete/Group-before.html'">뒤로 가기</div>
-                </div>  
+
+                <div class="GroupPayment-btn" onclick="submitPayment()">작성 완료</div>
+                <div class="GroupPayment-btn2" onclick="location.href='../Group-complete/Group-before.html'">뒤로 가기</div>
             </div>
         </div>
+    </div>
+
+    <script src="GroupPayment.js"></script>
 </body>
 </html>
