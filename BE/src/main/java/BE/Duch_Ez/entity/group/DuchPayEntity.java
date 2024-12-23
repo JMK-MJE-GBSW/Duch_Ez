@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate; // 날짜를 위한 import
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,7 +26,7 @@ public class DuchPayEntity {
     private int totalAmount; // 총 금액
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id", nullable = false) // 외래 키 이름 변경
+    @JoinColumn(name = "group_id", nullable = false)
     private GroupEntity group; // 소속 그룹
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -35,8 +36,10 @@ public class DuchPayEntity {
     @OneToMany(mappedBy = "duchPay", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DuchPayParticipantEntity> participants = new ArrayList<>();
 
+    @Column(nullable = false)
+    private LocalDate paymentDate; // 날짜 추가
+
     public List<DuchPayParticipantEntity> getDuchPayParticipants() {
         return participants;
     }
-
 }

@@ -3,6 +3,7 @@ package BE.Duch_Ez.dto.group;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +16,7 @@ public class DuchPayResponse {
     private int totalAmount; // 총 금액
     private UUID payerId; // 돈 낸 사람 ID
     private List<ParticipantDebt> participantDebts; // 각 참여자의 지불 내역
-
+    private LocalDate paymentDate; // 날짜 추가
     @Getter
     @Setter
     public static class ParticipantDebt {

@@ -31,10 +31,12 @@ public class GroupController {
     private final DuchPayService duchPayService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> CreateGroup(@RequestHeader("Authorization") String authorizationHeader, @Valid @RequestBody GroupCreateRequest request, BindingResult bindingResult) {
+    public ResponseEntity<?> CreateGroup(@RequestHeader("Authorization") String authorizationHeader,
+                                         @Valid @RequestBody GroupCreateRequest request,
+                                         BindingResult bindingResult) {
         try {
             if (bindingResult.hasErrors()) {
-                return ResponseEntity.badRequest().body("값이 유효하지 않습니다: " + bindingResult.getFieldError().getDefaultMessage());
+                return ResponseEntity.badRequest().body(Map.of("error", "값이 유효하지 않습니다: " + bindingResult.getFieldError().getDefaultMessage()));
             }
 
             // ownerId를 JWT에서 추출
@@ -43,13 +45,15 @@ public class GroupController {
 
             // 그룹 생성 로직
             groupService.createGroup(request);
-            return ResponseEntity.ok("그룹 생성 완료");
+
+            // JSON 형식으로 성공 응답 반환
+            return ResponseEntity.ok(Map.of("message", "그룹 생성 완료"));
 
         } catch (SQLIntegrityConstraintViolationException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("그룹 생성 오류: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "그룹 생성 오류: " + e.getMessage()));
         }
     }
 
@@ -116,7 +120,7 @@ public class GroupController {
     public ResponseEntity<?> getDuchPay(@PathVariable String groupName) {
         try {
 
-            return ResponseEntity.ok(            duchPayService.getAllDuchPay(groupName));
+            return ResponseEntity.ok(duchPayService.getAllDuchPay(groupName));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }

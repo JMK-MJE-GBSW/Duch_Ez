@@ -16,7 +16,7 @@ public class ParticipantEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;  // UUID 타입으로 변경
 
-    @Column(nullable = false, length = 50, unique = true)
+    @Column(nullable = false, length = 50)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -23,27 +23,25 @@ public class DuchPayService {
     private final DuchPayRepository duchPayRepository;
 
     public DuchPayResponse createDuchPay(String groupName, DuchPayRequest request) {
-        // 그룹과 돈 낸 사람 조회
-        GroupEntity group = groupRepository.findByName(groupName).orElseThrow(() -> new IllegalArgumentException("그룹을 찾을 수 없습니다."));
-        ParticipantEntity payer = participantRepository.findById(request.getPayerId()).orElseThrow(() -> new IllegalArgumentException("돈 낸 사람을 찾을 수 없습니다."));
+        GroupEntity group = groupRepository.findByName(groupName)
+                .orElseThrow(() -> new IllegalArgumentException("그룹을 찾을 수 없습니다."));
+        ParticipantEntity payer = participantRepository.findById(request.getPayerId())
+                .orElseThrow(() -> new IllegalArgumentException("돈 낸 사람을 찾을 수 없습니다."));
 
-        // 참여자 목록 조회
         List<ParticipantEntity> participants = participantRepository.findAllById(request.getParticipantIds());
         if (participants.isEmpty()) {
             throw new IllegalArgumentException("참여자 목록이 비어있습니다.");
         }
 
-        // 금액 나누기
         int splitAmount = request.getTotalAmount() / participants.size();
 
-        // DuchPayEntity 생성
         DuchPayEntity duchPay = new DuchPayEntity();
         duchPay.setTitle(request.getTitle());
         duchPay.setTotalAmount(request.getTotalAmount());
         duchPay.setPayer(payer);
         duchPay.setGroup(group);
+        duchPay.setPaymentDate(request.getPaymentDate()); // 날짜 설정
 
-        // 참여자에 대한 부채 정보 저장
         List<DuchPayParticipantEntity> debts = participants.stream().map(participant -> {
             DuchPayParticipantEntity debt = new DuchPayParticipantEntity();
             debt.setDuchPay(duchPay);
@@ -55,22 +53,24 @@ public class DuchPayService {
         duchPay.setParticipants(debts);
         duchPayRepository.save(duchPay);
 
-        // 응답 생성
         DuchPayResponse response = new DuchPayResponse();
         response.setId(duchPay.getId());
         response.setTitle(duchPay.getTitle());
         response.setTotalAmount(duchPay.getTotalAmount());
         response.setPayerId(payer.getId());
+        response.setPaymentDate(duchPay.getPaymentDate());
         response.setParticipantDebts(debts.stream().map(debt -> {
             DuchPayResponse.ParticipantDebt participantDebt = new DuchPayResponse.ParticipantDebt();
             participantDebt.setParticipantId(debt.getParticipant().getId());
             participantDebt.setParticipantName(debt.getParticipant().getName());
             participantDebt.setAmountOwed(debt.getAmountOwed());
+
             return participantDebt;
         }).collect(Collectors.toList()));
 
         return response;
     }
+
 
 
     public Map<String, Map<String, Integer>> calculateDebts(String groupName) {
@@ -109,7 +109,7 @@ public class DuchPayService {
                     List<DuchPayResponse.ParticipantDebt> participantDebts = duchPay.getParticipants().stream()
                             .map(ParticipantDebts -> {
                                 DuchPayResponse.ParticipantDebt Debt = new DuchPayResponse.ParticipantDebt();
-                                Debt.setParticipantId(ParticipantDebts.getParticipant().getId());
+                                       Debt.setParticipantId(ParticipantDebts.getParticipant().getId());
                                 Debt.setParticipantName(ParticipantDebts.getParticipant().getName());
                                 Debt.setAmountOwed(ParticipantDebts.getAmountOwed());
                                 return Debt;
