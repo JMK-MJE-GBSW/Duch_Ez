@@ -86,3 +86,20 @@ function closeMenu(menuId, overlayId) {
     sideMenu.classList.remove('active');
     overlay.classList.remove('active');
 }
+// 로그아웃 함수
+function logout() {
+    localStorage.clear();
+
+    localStorage.removeItem('currentGroupName');  // 그룹 이름 삭제
+    // 추가 작업 (예: 사용자 알림)
+    alert("로그아웃 되었습니다.");
+
+    // 로그인 페이지로 리디렉션
+    location.href = '../user/login.html';
+
+}
+
+function login(username, password) {
+    localStorage.clear();  // 로그인 시 이전 데이터 삭제
+    // 로그인 처리
+}
