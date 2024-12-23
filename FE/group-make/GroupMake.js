@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // openMenu 함수 수정
+    // 메뉴 열기/닫기 함수
     function openMenu(menuId, overlayId) {
         const sideMenu = document.getElementById(menuId);
         const overlay = document.getElementById(overlayId);
@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // closeMenu 함수 수정
     function closeMenu(menuId, overlayId) {
         const sideMenu = document.getElementById(menuId);
         const overlay = document.getElementById(overlayId);
@@ -25,38 +24,27 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 글로벌 스코프에 함수 노출
+    // 함수 전역 등록
     window.openMenu = openMenu;
     window.closeMenu = closeMenu;
-
-    // 햄버거 아이콘과 오버레이에 이벤트 리스너 추가
-    const hamburgerIcon = document.getElementById('GroupCompleteFa-bar');
-    const overlay = document.getElementById('GroupCompleteOverlay');
-
-    if (hamburgerIcon && overlay) {
-        hamburgerIcon.addEventListener('click', function () {
-            openMenu('GroupComplete-SideMenu', 'GroupCompleteOverlay');
-        });
-
-        overlay.addEventListener('click', function () {
-            closeMenu('GroupComplete-SideMenu', 'GroupCompleteOverlay');
-        });
-    }
 
     // 참가자 추가 기능
     const addButton = document.getElementById('member-extra');
     const inputField = document.getElementById('GroupMake-BoxText2');
     const memberList = document.getElementById('member-list');
+    const createButton = document.querySelector('.GroupMake-btn');
+    const groupNameInput = document.getElementById('GroupMake-BoxText');
 
-    if (!addButton || !inputField || !memberList) {
-        console.error('필요한 요소 중 하나를 찾을 수 없습니다.');
+    if (!addButton || !inputField || !memberList || !groupNameInput) {
+        console.error('필수 요소를 찾을 수 없습니다.');
         return;
     }
 
-    addButton.addEventListener('click', function () {
+    // 참가자 추가 버튼 클릭 이벤트
+    addButton.addEventListener('click', () => {
         const inputValue = inputField.value.trim();
 
-        if (inputValue === '') {
+        if (!inputValue) {
             alert('참가자 이름을 입력해주세요.');
             return;
         }
@@ -64,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const existingMembers = Array.from(memberList.children).map(
             (member) => member.textContent.replace(' 삭제', '')
         );
+
         if (existingMembers.includes(inputValue)) {
             alert('이미 추가된 참가자입니다.');
             return;
@@ -74,17 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
         newMember.textContent = inputValue;
 
         const deleteButton = document.createElement('button');
-        deleteButton.style.backgroundColor = 'transparent';
-        deleteButton.style.border = 'none';
-        deleteButton.style.cursor = 'pointer';
+        deleteButton.className = 'delete-button';
+        deleteButton.innerHTML = '<i class="fa-solid fa-xmark" style="color: #f0f0f0; font-size: 15px;"></i>';
 
-        const deleteIcon = document.createElement('i');
-        deleteIcon.className = 'fa-solid fa-xmark';
-        deleteIcon.style.color = '#f0f0f0';
-        deleteIcon.style.fontSize = '15px';
-        deleteButton.appendChild(deleteIcon);
-
-        deleteButton.addEventListener('click', function () {
+        deleteButton.addEventListener('click', () => {
             if (confirm('정말로 삭제하시겠습니까?')) {
                 memberList.removeChild(newMember);
             }
@@ -95,4 +77,56 @@ document.addEventListener('DOMContentLoaded', function () {
 
         inputField.value = '';
     });
+
+    // 그룹 생성 요청 함수
+    const createGroup = async () => {
+        const groupName = groupNameInput.value.trim();
+        const members = Array.from(memberList.children).map((member) => 
+            member.textContent.replace(' 삭제', '')
+        );
+
+        if (!groupName) {
+            alert('그룹 이름을 입력해주세요.');
+            return;
+        }
+
+        if (members.length < 2) {  // 참가자가 2명 이상이어야 함
+            alert('참가자는 최소 2명 이상이어야 합니다.');
+            return;
+        }
+
+        const token = localStorage.getItem("authToken");
+
+        const data = {
+            name: groupName,
+            participants: members
+        };
+
+        try {
+            const response = await fetch('http://localhost:8080/group/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token // 토큰 포함
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(errorMessage || '그룹 생성 실패');
+            }
+
+            // 서버가 성공 응답을 보냈다면
+            alert('그룹이 성공적으로 생성되었습니다.');
+            
+            // 그룹 이름을 URL 파라미터로 전달하여 페이지 이동
+            window.location.href = `GroupMakeComplete.html?groupName=${encodeURIComponent(groupName)}`;
+        } catch (error) {
+            alert(`그룹 생성 실패: ${error.message}`);
+        }
+    };
+
+    // 그룹 만들기 버튼 이벤트
+    createButton.addEventListener('click', createGroup);
 });

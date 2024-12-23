@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const emailCheckInput = document.getElementById('email-check');
     const signupButton = document.getElementById('register-button');
     const sendCodeButton = document.getElementById('send-code');
-    // 회원가입 로직
+
     const registerUser = async () => {
         const data = {
             username: usernameInput.value,
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    // 인증번호 발송 로직
+
     const sendVerificationCode = async () => {
         const data = {
             username: usernameInput.value,
@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
             password_check: passwordCheckInput.value,
         };
 
-        // 입력 필드 검증
         if (!data.username || !data.email || !data.password || !data.password_check) {
             alert('인증코드 제외 모든 필드를 입력해주세요.');
             return;
