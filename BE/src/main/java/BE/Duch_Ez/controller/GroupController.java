@@ -6,6 +6,7 @@ import BE.Duch_Ez.dto.group.DuchPayResponse;
 import BE.Duch_Ez.dto.group.GroupCreateRequest;
 import BE.Duch_Ez.dto.group.GroupDto;
 
+import BE.Duch_Ez.entity.user.UserEntity;
 import BE.Duch_Ez.service.group.DuchPayService;
 import BE.Duch_Ez.service.group.GroupService;
 import BE.Duch_Ez.service.user.UserService;
@@ -58,9 +59,14 @@ public class GroupController {
     }
 
     @GetMapping
-    public List<GroupDto> getGroups() {
-        return groupService.getAllGroups();
+    public List<GroupDto> getGroups(@RequestHeader("Authorization") String token) {
+        // 토큰에서 사용자 정보 추출 (서비스에서 구현 필요)
+        UserEntity currentUser = userService.getUserFromToken(token);
+
+        // 사용자의 그룹만 조회
+        return groupService.getGroupsByUser(currentUser);
     }
+
 
     @GetMapping("/{groupName}")
     public GroupDto getGroup(@PathVariable String groupName) {

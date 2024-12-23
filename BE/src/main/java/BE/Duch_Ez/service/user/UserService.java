@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -130,5 +131,16 @@ public class UserService {
         return jwtTokenProvider.getUserIdFromToken(token);
     }
 
+    public UserEntity getUserFromToken(String token) {
+            // "Bearer " 접두사 제거
+            String actualToken = token.replace("Bearer ", "");
+
+            // 토큰에서 사용자 이름 추출 (JWT 파싱 로직 예시)
+            String username = jwtTokenProvider.getUsername(actualToken);
+
+            // 사용자 이름으로 DB에서 조회
+            return userRepository.findByUsername(username)
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+    }
 
 }

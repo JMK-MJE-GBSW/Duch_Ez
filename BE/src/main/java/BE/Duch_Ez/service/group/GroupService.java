@@ -65,15 +65,15 @@ public class GroupService {
     }
 
 
-    // 그룹 리스트 조회
-    public List<GroupDto> getAllGroups() {
-        return groupRepository.findAll().stream()
+    public List<GroupDto> getGroupsByUser(UserEntity user) {
+        // 사용자 ID를 기반으로 그룹 조회
+        return groupRepository.findByOwner(user).stream()
                 .map(group -> {
                     GroupDto groupDto = new GroupDto();
                     groupDto.setName(group.getName());
                     groupDto.setOwnerId(group.getOwner().getId());
-                    groupDto.setName(group.getName());
                     groupDto.setId(group.getId());
+
                     // 참가자 리스트를 DTO로 변환
                     List<ParticipantDto> participantDtos = group.getParticipants().stream()
                             .map(participant -> {
@@ -91,6 +91,7 @@ public class GroupService {
                 })
                 .collect(Collectors.toList());
     }
+
 
     public GroupDto getGroup(String groupName) {
         GroupEntity group = groupRepository.findByName(groupName)
