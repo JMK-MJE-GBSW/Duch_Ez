@@ -3,7 +3,7 @@ const apiUrl = "http://localhost:8080/group"; // API 경로 (필요시 수정)
 // 사이드 메뉴 열기 + 그룹 목록 가져오기
 async function openMenu(menuId, overlayId) {
     const sideMenu = document.getElementById(menuId);
-    const overlay = document.getElementById(overlayId); 
+    const overlay = document.getElementById(overlayId);
 
     let groups = []; // 기본 빈 그룹 목록
 
