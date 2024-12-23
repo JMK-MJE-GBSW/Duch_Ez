@@ -25,7 +25,7 @@ async function openMenu(menuId, overlayId) {
     overlay.classList.add('active');
 }
 
-
+// 그룹 이름 렌더링
 function renderGroupNames(groups) {
     const groupListContainer = document.getElementById("recent-group-list");
     groupListContainer.innerHTML = ""; // 기존 목록 초기화
@@ -52,7 +52,6 @@ function renderGroupNames(groups) {
         });
     }
 }
-
 
 // 백엔드에서 그룹 데이터 가져오기
 async function fetchGroups() {
@@ -86,6 +85,7 @@ function closeMenu(menuId, overlayId) {
     sideMenu.classList.remove('active');
     overlay.classList.remove('active');
 }
+
 // 로그아웃 함수
 function logout() {
     localStorage.clear();
@@ -96,10 +96,16 @@ function logout() {
 
     // 로그인 페이지로 리디렉션
     location.href = '../user/login.html';
-
 }
 
+// 로그인 처리 함수
 function login(username, password) {
     localStorage.clear();  // 로그인 시 이전 데이터 삭제
-    // 로그인 처리
+
+    // 로그인 처리 로직 추가 (예: 로그인 API 호출 후 토큰 저장)
+    const token = "some_token";  // 실제 로그인 API에서 받아온 토큰을 여기에 저장
+    localStorage.setItem("authToken", token);
+
+    // 로그인 후 리디렉션
+    location.href = '../dashboard/dashboard.html';  // 로그인 후 대시보드나 원하는 페이지로 이동
 }

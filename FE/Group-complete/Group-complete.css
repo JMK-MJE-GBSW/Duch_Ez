@@ -290,9 +290,6 @@ html {
     text-align: center; /* 텍스트 가운데 정렬 */
     margin-top: 20px; /* 상단 여백 */
 }
-
-
-
 .participant-list {
     display: flex;
     justify-content: center;
@@ -318,7 +315,6 @@ html {
     color: white;
 }
 
-/* 그룹 이름 스타일 */
 .group-name {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 32px; /* 제목 크기 키우기 */
@@ -349,9 +345,9 @@ html {
 
 .group-name {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: bold;
-    color: #19AD8B; /* 그룹 이름에 초록색을 적용 */
+    color: #f0f0f0; /* 그룹 이름에 초록색을 적용 */
     margin-bottom: 10px;
     text-align: center;
     text-transform: uppercase; /* 그룹 이름을 대문자로 */
@@ -410,9 +406,9 @@ html {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 1%;
     text-align: center;
-    color: #19AD8B; /* 제목 강조 */
+    color: #f0f0f0; /* 제목 강조 */
 }
 
 .debt-list {
