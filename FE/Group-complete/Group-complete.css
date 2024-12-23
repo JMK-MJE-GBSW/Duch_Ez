@@ -293,32 +293,29 @@ html {
 
 
 
-/* 참가자 목록 스타일 */
 .participant-list {
-    display: flex; /* 플렉스 레이아웃으로 가로 정렬 */
-    justify-content: center; /* 중앙 정렬 */
-    flex-wrap: wrap; /* 화면이 좁으면 다음 줄로 넘어감 */
-    gap: 15px; /* 각 참가자 간격 */
+    display: flex;
+    justify-content: center;
     margin-top: 10px;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-/* 참가자 항목 스타일 */
+/* 각 참가자 항목 스타일 */
 .participant-item {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 16px; /* 참가자 이름 크기 */
-    color: #fff; /* 텍스트 색상 변경 */
-    padding: 10px 20px; /* 텍스트 주변 여백을 늘려서 동그랗게 */
-    background-color: #19AD8B; /* 배경색 추가 */
-    border-radius: 30px; /* 동그란 모양 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 부드러운 그림자 */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* 배경색 및 크기 효과 */
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-/* 참가자 항목 호버 효과 */
+/* 참가자 항목에 마우스 올렸을 때 스타일 변경 */
 .participant-item:hover {
-    background-color: #12846d; /* 호버 시 배경색 변경 (더 어두운 청록색) */
-    transform: scale(1.05); /* 살짝 확대 */
-    color: #fff; /* 호버 시 글자색 유지 */
+    background-color: #19AD8B; /* 초록색으로 변경 */
+    color: white;
 }
 
 /* 그룹 이름 스타일 */
@@ -352,27 +349,38 @@ html {
 
 .group-name {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
-    color: teal;
-    margin-bottom: 20px;
+    color: #19AD8B; /* 그룹 이름에 초록색을 적용 */
+    margin-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase; /* 그룹 이름을 대문자로 */
+    letter-spacing: 2px; /* 문자 간 간격 추가 */
 }
 
 
 .dutch-pay-items {
     margin-top: 20px;
     display: flex;
-    flex-direction: column; /* 항목을 세로 정렬 */
-    gap: 10px; /* 항목 간격 추가 */
-    align-items: center; /* 항목을 가운데 정렬 */
+    flex-direction: column;
+    gap: 15px; /* 항목 간 간격 */
+    align-items: stretch; /* 항목 크기 통일 */
 }
 
 .item {
-    width: 90%; /* 항목의 가로 폭 제한 */
-    padding: 10px;
-    background-color: #f0f0f0;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    width: 500px; /* 전체 너비 활용 */
+    padding: 15px;
+    background-color: #1E2F2F; /* 짙은 배경색 */
+    color: #f0f0f0;
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* 부드러운 그림자 */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.item:hover {
+    background-color: #19AD8B; /* 호버 시 강조 */
+    transform: scale(1.03); /* 살짝 확대 */
+    color: #fff;
 }
 
 .item h3 {
@@ -380,34 +388,37 @@ html {
     font-weight: bold;
     margin-bottom: 5px;
 }
+
 .total-spent {
-    font-size: 1.2em;
-    color: white;
-    margin-top: 10px;
+    font-size: 1.5em; /* 크기 조정 */
+    color: #FFD700; /* 골드 컬러로 강조 */
+    margin-top: 15px;
+    text-align: center;
 }
+
 .debt-relations {
     margin-top: 20px;
-    padding: 15px;
-    background-color: #333;
-    color: white;
-    border-radius: 5px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 20px;
+    background-color: #2A3D3D; /* 배경색 변경 */
+    color: #f0f0f0;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .debt-relations h3 {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     text-align: center;
+    color: #19AD8B; /* 제목 강조 */
 }
 
 .debt-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
     color: #ddd;
@@ -415,6 +426,13 @@ html {
 
 .debt-list .debt-item {
     padding: 10px;
-    background-color: #444;
+    background-color: #444; /* 부드러운 배경색 */
     border-radius: 5px;
+    color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+.debt-list .debt-item:hover {
+    background-color: #19AD8B; /* 호버 시 강조 */
+    color: #fff;
 }

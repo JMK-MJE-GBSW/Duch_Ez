@@ -66,28 +66,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function renderGroupDetail(groupDetail) {
-        groupContainer.innerHTML = "";
+        groupContainer.innerHTML = ""; // 기존 내용 비우기
         const groupNameElement = document.createElement("h1");
+        groupNameElement.classList.add("group-name"); // 그룹 이름에 스타일 추가
         groupNameElement.textContent = groupDetail.name;
-
+    
         const participantList = document.createElement("div");
-        participantList.classList.add("participant-list");
+        participantList.classList.add("participant-list"); // 참가자 목록에 클래스 추가
         groupDetail.participants.forEach(participant => {
             const listItem = document.createElement("span");
+            listItem.classList.add("participant-item"); // 각 참가자에 대한 스타일 추가
             listItem.textContent = participant.name;
             participantList.appendChild(listItem);
         });
-
+    
         const totalSpentElement = document.createElement("p");
         totalSpentElement.classList.add("total-spent");
         totalSpentElement.textContent = `전체 금액: ${groupDetail.totalSpent.toLocaleString()}원`;
-
+    
         groupContainer.appendChild(groupNameElement);
         groupContainer.appendChild(participantList);
         groupContainer.appendChild(totalSpentElement);
         currentGroupName = groupDetail.name;
         localStorage.setItem("currentGroupName", currentGroupName);
     }
+    
+    
 
     function renderItemList(items) {
         itemListContainer.innerHTML = "";
