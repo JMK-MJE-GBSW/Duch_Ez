@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (!response.ok) throw new Error(`Failed to fetch debt relations. Status: ${response.status}`);
-            return await response.json();
+            return await response.json();z
         } catch (error) {
             alert("채무 관계를 가져오는 데 실패했습니다.");
             console.error(error);
