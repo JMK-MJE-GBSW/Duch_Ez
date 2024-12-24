@@ -26,43 +26,38 @@ public class GroupService {
     private final UserRepository userRepository;
     private final ParticipantRepository participantRepository;
 
-    // 그룹 생성
     public void createGroup(GroupCreateRequest request) throws SQLIntegrityConstraintViolationException {
-        // 그룹 이름 중복 체크
-        if (groupRepository.existsByname(request.getName())) {
-            throw new SQLIntegrityConstraintViolationException("그룹 이름이 중복됩니다.");
+        UserEntity owner = userRepository.findById(request.getOwnerId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid owner ID"));
+
+        // 특정 사용자의 그룹 내에서 이름 중복 검사
+        if (groupRepository.existsByNameAndOwner(request.getName(), owner)) {
+            throw new SQLIntegrityConstraintViolationException("사용자의 그룹 목록에 중복된 이름이 있습니다.");
         }
 
         GroupEntity groupEntity = new GroupEntity();
         groupEntity.setName(request.getName());
-        UserEntity owner = userRepository.findById(request.getOwnerId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid owner ID"));
         groupEntity.setOwner(owner);
 
-        // 기존 참가자 중복 확인 (같은 그룹 내에서만 중복 체크)
         List<ParticipantEntity> participants = new ArrayList<>();
-
         for (String name : request.getParticipants()) {
-            // 해당 그룹 내에 이미 같은 이름의 참가자가 있는지 확인
-            boolean isDuplicate = groupEntity.getParticipants().stream()
-                    .anyMatch(existingParticipant -> existingParticipant.getName().equals(name));
-
+            boolean isDuplicate = participants.stream()
+                    .anyMatch(participant -> participant.getName().equals(name));
             if (isDuplicate) {
-                throw new IllegalArgumentException("그룹 내에 중복된 참가자가 존재합니다: " + name);
+                throw new IllegalArgumentException("그룹 내 중복된 참가자가 있습니다: " + name);
             }
 
-            // 참가자 추가
             ParticipantEntity participant = new ParticipantEntity();
             participant.setName(name);
-            participant.setGroup(groupEntity);  // 그룹 설정
+            participant.setGroup(groupEntity);
             participants.add(participant);
         }
 
         groupEntity.setParticipants(participants);
 
-        // 그룹 저장 (Cascade 옵션에 따라 참가자도 저장됨)
         groupRepository.save(groupEntity);
     }
+
 
 
     public List<GroupDto> getGroupsByUser(UserEntity user) {
@@ -124,27 +119,24 @@ public class GroupService {
     }
 
 
-    public void updateGroup(GroupCreateRequest request, String groupName) throws SQLIntegrityConstraintViolationException {
-        GroupEntity group = groupRepository.findByName(groupName)
-                .orElseThrow(() -> new IllegalArgumentException("그룹이 존재하지 않습니다."));
+    public void updateGroupName(String currentName, String newName) {
+        // 기존 그룹 찾기
+        GroupEntity group = groupRepository.findByName(currentName)
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 그룹이 존재하지 않습니다."));
 
-        if (groupRepository.existsByname(request.getName())) {
-            throw new SQLIntegrityConstraintViolationException("그룹 이름이 중복됩니다.");
-        }
-
-        if (group.getName().equals(request.getName())) {
-            throw new SQLIntegrityConstraintViolationException("기존 그룹 이름과 동일합니다.");
-        }
-
-        group.setName(request.getName());
-        groupRepository.save(group);
+        // 이름 업데이트
+        group.setName(newName);
+        groupRepository.save(group); // 변경 내용 저장
     }
 
     public void deleteGroup(String groupName) {
+        // 그룹 조회 및 삭제
         GroupEntity group = groupRepository.findByName(groupName)
-                .orElseThrow(() -> new IllegalArgumentException("그룹이 존재하지 않습니다."));
-        groupRepository.delete(group);
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 그룹이 존재하지 않습니다."));
+
+        groupRepository.delete(group); // 삭제
     }
+
 
 
 

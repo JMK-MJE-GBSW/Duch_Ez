@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface GroupRepository extends JpaRepository<GroupEntity, UUID> {  // UUID로 변경
-    boolean existsByname(String name);
-    Optional<GroupEntity> findByName(String name); // 그룹 이름으로 조회
+public interface GroupRepository extends JpaRepository<GroupEntity, UUID> {
+    boolean existsByNameAndOwner(String name, UserEntity owner); // 사용자별 그룹 이름 중복 검사
+    Optional<GroupEntity> findByName(String name);
     List<GroupEntity> findByOwner(UserEntity owner);
 }

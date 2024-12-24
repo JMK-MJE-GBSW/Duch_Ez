@@ -73,28 +73,34 @@ public class GroupController {
         return groupService.getGroup(groupName); // UUID로 조회
     }
 
-    @PutMapping("/{groupName}")
-    public ResponseEntity<?> updateGroup(@PathVariable String groupName, @RequestBody @Valid GroupCreateRequest request, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("값이 유효하지 않습니다");
+    // 그룹 이름 수정
+        @PutMapping("/{groupName}")
+        public ResponseEntity<?> updateGroupName(@PathVariable String groupName,
+                                                 @RequestBody Map<String, String> updateRequest) {
+            try {
+                String newName = updateRequest.get("newName");
+                if (newName == null || newName.isBlank()) {
+                    return ResponseEntity.badRequest().body("새로운 이름을 입력해주세요.");
+                }
+    
+                groupService.updateGroupName(groupName, newName); // 서비스 호출
+                return ResponseEntity.ok(Map.of("message", "그룹 이름이 성공적으로 변경되었습니다.", "newName", newName));
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", e.getMessage()));
+            }
         }
-        try {
-            groupService.updateGroup(request, groupName);
-            return ResponseEntity.ok("그룹 수정 완료");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+    
+        // 그룹 삭제
+        @DeleteMapping("/{groupName}")
+        public ResponseEntity<?> deleteGroup(@PathVariable String groupName) {
+            try {
+                groupService.deleteGroup(groupName);
+                return ResponseEntity.ok(Map.of("message", "그룹이 성공적으로 삭제되었습니다."));
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", e.getMessage()));
+            }
         }
-    }
 
-    @DeleteMapping("/{groupName}")
-    public ResponseEntity<?> deleteGroup(@PathVariable String groupName) {
-        try {
-            groupService.deleteGroup(groupName);
-            return ResponseEntity.ok("그룹 삭제 완료");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-        }
-    }
     //메인에서 더치페이 항목목록 표시기능 개발
     //
     //

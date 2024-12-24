@@ -19,7 +19,7 @@
         @GeneratedValue(strategy = GenerationType.AUTO)
         private UUID id;  // UUID 타입으로 변경
 
-        @Column(nullable = false, unique = true)
+        @Column(nullable = false)
         private String name;
 
         @ManyToOne(fetch = FetchType.LAZY)
