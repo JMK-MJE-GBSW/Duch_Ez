@@ -513,3 +513,23 @@ html {
 .GroupComplete-btn:hover {
     background-color: #12846d;
 }
+
+.delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-button i {
+    font-size: 15px;
+    color: #f0f0f0;
+    transition: color 0.2s ease-in-out;
+}
+
+.delete-button:hover i {
+    color: #ff5c5c; /* 호버 시 색상 변경 */
+}
